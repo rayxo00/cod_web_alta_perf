@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Dreamy Pages</title>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify+Sans'>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+        body {
+            font-family: "Pixelify Sans", sans-serif;
+            background-image: url(img/fundo.png);
+            background-color: #f9e4e4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2%;
+        }
+ 
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 25px;
+            background-color: #fff1f8;
+            color: #b11628;
+            border-bottom: 2px solid #b11628;
+        }
+        #header img { image-rendering: pixelated; }
+        .itensMenu { display: flex; gap: 25px; list-style: none; }
+        .itensMenu a {
+            text-decoration: none;
+            color: #b11628;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+        .itensMenu a:hover { text-decoration: underline; }
+ 
+        #main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+ 
+        .auth-box {
+            background-color: #fff1f8;
+            border: 2px solid #b11628;
+            border-radius: 6px;
+            box-shadow: 4px 4px 0px #5c0c15;
+            width: 100%;
+            max-width: 420px;
+            overflow: hidden;
+        }
+ 
+        .auth-tabs {
+            display: flex;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 14px;
+            font-family: "Pixelify Sans", sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background-color: #e8c5cd;
+            color: #7a0a19;
+            transition: 0.2s;
+            border-bottom: 2px solid #b11628;
+        }
+        .tab-btn.active {
+            background-color: #b2192c;
+            color: #fff1f8;
+            border-bottom: 2px solid #b2192c;
+        }
+        .tab-btn:not(.active):hover { background-color: #d49aa5; }
+ 
+        .auth-form {
+            padding: 30px 28px;
+            display: none;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .auth-form.active { display: flex; }
+ 
+        .auth-form h2 {
+            text-align: center;
+            font-size: 22px;
+            color: #b2192c;
+            margin-bottom: 4px;
+        }
+        .auth-form .subtitulo {
+            text-align: center;
+            font-size: 14px;
+            color: #8a3040;
+            margin-top: -10px;
+        }
+ 
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .field label {
+            font-size: 15px;
+            color: #7a0a19;
+            font-weight: bold;
+        }
+        .field input {
+            font-family: "Pixelify Sans", sans-serif;
+            font-size: 15px;
+            padding: 10px 12px;
+            border: 2px solid #b11628;
+            border-radius: 4px;
+            background-color: #fff8fb;
+            color: #3a0010;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .field input:focus {
+            border-color: #e65447;
+            box-shadow: 2px 2px 0 #b11628;
+        }
+        .field input::placeholder { color: #c48a96; }
+ 
+        .btn-submit {
+            font-family: "Pixelify Sans", sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px;
+            background-color: #b2192c;
+            color: #fff1f8;
+            border: 2px solid #5c0c15;
+            border-radius: 4px;
+            box-shadow: 3px 3px 0px #5c0c15;
+            cursor: pointer;
+            transition: 0.15s;
+            margin-top: 4px;
+        }
+        .btn-submit:hover {
+            background-color: #e65447;
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #5c0c15;
+        }
+        .btn-submit:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #5c0c15;
+        }
+ 
+        .msg {
+            text-align: center;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: none;
+        }
+        .msg.erro {
+            background-color: #ffd5d8;
+            color: #7a0a19;
+            border: 1px solid #b11628;
+            display: block;
+        }
+        .msg.sucesso {
+            background-color: #d5ffd8;
+            color: #0a5c1a;
+            border: 1px solid #1b8c2e;
+            display: block;
+        }
+ 
+        .divisor {
+            text-align: center;
+            font-size: 13px;
+            color: #b11628;
+            position: relative;
+        }
+        .divisor::before, .divisor::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 38%;
+            height: 1px;
+            background-color: #d4a0aa;
+        }
+        .divisor::before { left: 0; }
+        .divisor::after { right: 0; }
+ 
+        .link-alterar {
+            text-align: center;
+            font-size: 14px;
+            color: #8a3040;
+        }
+        .link-alterar a {
+            color: #b2192c;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .link-alterar a:hover { color: #e65447; }
+ 
+        .req-senha {
+            font-size: 12px;
+            color: #9a4055;
+            padding: 6px 10px;
+            background-color: #fce8ec;
+            border-left: 3px solid #b11628;
+            border-radius: 0 4px 4px 0;
+        }
+ 
+        footer {
+            text-align: center;
+            font-family: "Pixelify Sans", sans-serif;
+            color: #5c0c15;
+            font-size: 14px;
+            padding: 16px;
+            background-color: #fff1f8;
+            border-top: 2px solid #b11628;
+        }
+    </style>
+</head>
+<body>
+ 
+<div id="header">
+    <img src="img/iconCasa.png" alt="icon casa" style="width: 3%; height: auto;">
+    <ul class="itensMenu">
+        <li><a href="index.html"><b>Home</b></a></li>
+        <li><a href="favoritos/favoritos.html"><b>Favoritos</b></a></li>
+        <li><a href="suporte/suporte.html"><b>Suporte</b></a></li>
+    </ul>
+</div>
+ 
+<div id="main">
+    <div class="auth-box">
+        <div class="auth-tabs">
+            <button class="tab-btn active" onclick="mostrarAba('login')">Entrar</button>
+            <button class="tab-btn" onclick="mostrarAba('cadastro')">Cadastrar</button>
+        </div>
+ 
+        <!-- FORMULÁRIO LOGIN -->
+        <div id="form-login" class="auth-form active">
+            <h2>📖 Bem-vindo de volta!</h2>
+            <p class="subtitulo">Entre para acessar seus favoritos</p>
+            <div id="msg-login" class="msg"></div>
+            <div class="field">
+                <label for="login-email">E-mail</label>
+                <input type="email" id="login-email" placeholder="seu@email.com" autocomplete="email">
+            </div>
+            <div class="field">
+                <label for="login-senha">Senha</label>
+                <input type="password" id="login-senha" placeholder="••••••••" autocomplete="current-password">
+            </div>
+            <button class="btn-submit" onclick="fazerLogin()">Entrar</button>
+            <div class="divisor">ou</div>
+            <p class="link-alterar">Não tem conta? <a onclick="mostrarAba('cadastro')">Cadastre-se</a></p>
+        </div>
+ 
+        <!-- FORMULÁRIO CADASTRO -->
+        <div id="form-cadastro" class="auth-form">
+            <h2>✨ Criar conta</h2>
+            <p class="subtitulo">Junte-se à comunidade literária</p>
+            <div id="msg-cadastro" class="msg"></div>
+            <div class="field">
+                <label for="cad-nome">Nome completo</label>
+                <input type="text" id="cad-nome" placeholder="Seu nome" autocomplete="name">
+            </div>
+            <div class="field">
+                <label for="cad-email">E-mail</label>
+                <input type="email" id="cad-email" placeholder="seu@email.com" autocomplete="email">
+            </div>
+            <div class="field">
+                <label for="cad-senha">Senha</label>
+                <input type="password" id="cad-senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+                <span class="req-senha">Use pelo menos 6 caracteres com letras e números.</span>
+            </div>
+            <div class="field">
+                <label for="cad-confirma">Confirmar senha</label>
+                <input type="password" id="cad-confirma" placeholder="Repita a senha" autocomplete="new-password">
+            </div>
+            <button class="btn-submit" onclick="fazerCadastro()">Criar conta</button>
+            <div class="divisor">ou</div>
+            <p class="link-alterar">Já tem conta? <a onclick="mostrarAba('login')">Entrar</a></p>
+        </div>
+    </div>
+</div>
+ 
+<footer>© 2025 Dreamy Pages — Seu refúgio literário</footer>
+ 
+<script>
+    const API = 'http://localhost:3000';
+ 
+    function mostrarAba(aba) {
+        document.getElementById('form-login').classList.remove('active');
+        document.getElementById('form-cadastro').classList.remove('active');
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+ 
+        document.getElementById('form-' + aba).classList.add('active');
+        const idx = aba === 'login' ? 0 : 1;
+        document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+        limparMensagens();
+    }
+ 
+    function limparMensagens() {
+        document.querySelectorAll('.msg').forEach(m => {
+            m.className = 'msg';
+            m.textContent = '';
+        });
+    }
+ 
+    function mostrarMsg(id, texto, tipo) {
+        const el = document.getElementById(id);
+        el.textContent = texto;
+        el.className = 'msg ' + tipo;
+    }
+ 
+    async function fazerLogin() {
+        const email = document.getElementById('login-email').value.trim();
+        const senha = document.getElementById('login-senha').value;
+ 
+        if (!email || !senha) {
+            mostrarMsg('msg-login', 'Preencha e-mail e senha.', 'erro');
+            return;
+        }
+ 
+        try {
+            const res = await fetch(`${API}/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, senha })
+            });
+            const dados = await res.json();
+ 
+            if (res.ok) {
+                localStorage.setItem('token', dados.token);
+                localStorage.setItem('usuario', JSON.stringify(dados.usuario));
+                mostrarMsg('msg-login', '✅ Login realizado! Redirecionando...', 'sucesso');
+                setTimeout(() => window.location.href = 'index.html', 1500);
+            } else {
+                mostrarMsg('msg-login', dados.mensagem || 'Erro ao fazer login.', 'erro');
+            }
+        } catch (e) {
+            mostrarMsg('msg-login', 'Servidor indisponível. Tente novamente.', 'erro');
+        }
+    }
+ 
+    async function fazerCadastro() {
+        const nome = document.getElementById('cad-nome').value.trim();
+        const email = document.getElementById('cad-email').value.trim();
+        const senha = document.getElementById('cad-senha').value;
+        const confirma = document.getElementById('cad-confirma').value;
+ 
+        if (!nome || !email || !senha || !confirma) {
+            mostrarMsg('msg-cadastro', 'Preencha todos os campos.', 'erro');
+            return;
+        }
+        if (senha.length < 6) {
+            mostrarMsg('msg-cadastro', 'A senha deve ter pelo menos 6 caracteres.', 'erro');
+            return;
+        }
+        if (senha !== confirma) {
+            mostrarMsg('msg-cadastro', 'As senhas não coincidem.', 'erro');
+            return;
+        }
+ 
+        try {
+            const res = await fetch(`${API}/cadastro`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nome, email, senha })
+            });
+            const dados = await res.json();
+ 
+            if (res.ok) {
+                mostrarMsg('msg-cadastro', '✅ Conta criada! Faça login para continuar.', 'sucesso');
+                setTimeout(() => mostrarAba('login'), 1800);
+            } else {
+                mostrarMsg('msg-cadastro', dados.mensagem || 'Erro ao criar conta.', 'erro');
+            }
+        } catch (e) {
+            mostrarMsg('msg-cadastro', 'Servidor indisponível. Tente novamente.', 'erro');
+        }
+    }
+ 
+    // Permite Enter nos campos
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const aba = document.getElementById('form-login').classList.contains('active');
+            aba ? fazerLogin() : fazerCadastro();
+        }
+    });
+</script>
+</body>
+</html>

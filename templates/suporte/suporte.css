@@ -1,0 +1,256 @@
+body {
+    margin: 0;
+    font-family: 'Pixelify Sans', sans-serif;
+    background-image: url(../img/fundo.png);
+    padding: 2%;
+    color: #5c0c15;
+}
+
+#header {
+    background-color: rgb(253, 253, 252);
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;     
+    list-style: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 0px #5c0c15;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #b2192c;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 20px; 
+    margin-right: 2%;
+}
+
+.itensMenu a {
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.itensMenu a:hover {
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+#conteudo-principal {
+    background-color: #e65447;
+    border: 2px solid #b11628;
+    border-radius: 6px;
+    box-shadow: 3px 3px 0px #5c0c15;
+    padding: 30px;
+}
+
+.container-suporte {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.titulo-pagina {
+    color: #fff1f8;
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 0px #5c0c15;
+}
+
+.subtitulo {
+    color: #fff1f8;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.secao-formulario,
+.secao-faq,
+.secao-redes {
+    background-color: #fff1f8;
+    border: 2px solid #b11628;
+    border-radius: 6px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 3px 3px 0px #5c0c15;
+}
+
+.titulo-secao {
+    color: #b11628;
+    font-size: 26px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #ffd86a;
+    padding-bottom: 10px;
+}
+
+.formulario-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-form label {
+    color: #b11628;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.campo-form input,
+.campo-form select,
+.campo-form textarea {
+    padding: 12px;
+    border: 2px solid #b11628;
+    border-radius: 6px;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 14px;
+    background-color: white;
+    color: #5c0c15;
+    transition: 0.2s;
+}
+
+.campo-form input:focus,
+.campo-form select:focus,
+.campo-form textarea:focus {
+    outline: none;
+    border-color: #f78e52;
+    box-shadow: 0 0 0 3px rgba(247, 142, 82, 0.2);
+}
+
+.btn-enviar {
+    padding: 12px 24px;
+    background-color: #b11628;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Pixelify Sans', sans-serif;
+    transition: 0.2s ease-in-out;
+    align-self: flex-start;
+}
+
+.btn-enviar:hover {
+    background-color: #5c0c15;
+    transform: scale(1.05);
+}
+
+.mensagem-sucesso {
+    background-color: #d4edda;
+    border: 2px solid #28a745;
+    border-radius: 6px;
+    padding: 15px;
+    margin-top: 20px;
+    color: #155724;
+}
+
+.mensagem-sucesso p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.pergunta-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px dashed #ffd86a;
+}
+
+.pergunta-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.pergunta {
+    color: #b11628;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.resposta {
+    color: #5c0c15;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.secao-redes p {
+    color: #5c0c15;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.botoes-redes {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-rede {
+    padding: 10px 20px;
+    background-color: #b11628;
+    color: white;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+    display: inline-block;
+}
+
+.btn-rede:hover {
+    background-color: #5c0c15;
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff1f8;
+    border: 2px solid #b11628;
+    border-radius: 6px;
+    color: #5c0c15;
+    box-shadow: 3px 3px 0px #5c0c15;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+.email-footer {
+    font-size: 14px;
+    color: #8a1221;
+}
+
+@media (max-width: 768px) {
+    .titulo-pagina {
+        font-size: 28px;
+    }
+    
+    #conteudo-principal {
+        padding: 20px;
+    }
+    
+    .secao-formulario,
+    .secao-faq,
+    .secao-redes {
+        padding: 20px;
+    }
+    
+    .botoes-redes {
+        justify-content: center;
+    }
+    
+    .btn-enviar {
+        width: 100%;
+        align-self: stretch;
+    }
+}

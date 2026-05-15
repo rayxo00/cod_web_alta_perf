@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  font-family: "Pixelify Sans", sans-serif;
+  background-image: url(../img/fundo.png);
+ padding: 2%;
+}
+
+#tudo {
+    background-color: #e65447;
+    padding-bottom: 2%;
+    
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 25px;
+  background-color: #fff1f8;
+  color: #b11628;
+    }
+
+    .itensMenu {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+.itensMenu a {
+  text-decoration: none;
+  color: #b11628;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.itensMenu a:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #b11628;
+  transition: 0.2s;
+}
+
+ul li a:hover {
+  color: #f78e52;
+  transform: translateX(4px);
+}
+
+.colunaLivros {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  background-color: #fff1f8;
+  border: 2px solid #b11628;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0px #5c0c15;
+  margin: 3%;
+}
+
+.colunaLivros img {
+  width: 150px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.infoLivro {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  width: 100%;
+  gap: 10px;
+}
+
+.btnComprar {
+  align-self: flex-end; 
+  padding: 8px 16px;
+  background-color: #b11628;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.2s ease-in-out;
+}
+
+.btnComprar:hover {
+  background-color: #5c0c15;
+  transform: scale(1.05);
+}
+
