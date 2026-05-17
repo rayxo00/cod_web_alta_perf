@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comentários - Ficção</title>
-    <link rel="stylesheet" href="comentRomance.css">
+    <link rel="stylesheet" href="{% static 'comentRomance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
 </head>
@@ -19,7 +19,7 @@
       <h2>Discussão: Duna</h2>
 
       <div class="livro-box">
-      <img src="../img/duna.capa.png" alt="duna capa" class="livro-img">
+      <img src="{% static 'img/duna.capa.png' %}" alt="duna capa" class="livro-img">
 
       <div  class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
@@ -88,7 +88,7 @@
       <h2>Discussão: 2001: Uma Odisséia no Espaço</h2>
 
       <div class="livro-box">
-        <img src="../img/2001capa.livro.png" alt="2001: Uma Odisséia no Espaço capa" class="livro-img">
+        <img src="{% static 'img/2001capa.livro.png' %}" alt="2001: Uma Odisséia no Espaço capa" class="livro-img">
       
         <div class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
@@ -157,7 +157,7 @@
       <h2>Discussão: Eu, robô</h2>
 
       <div class="livro-box">
-        <img src="../img/eu,robo.capa.png" alt="Eu, robô capa" class="livro-img">
+        <img src="{% static 'img/eu,robo.capa.png' %}" alt="Eu, robô capa" class="livro-img">
       
         <div class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>

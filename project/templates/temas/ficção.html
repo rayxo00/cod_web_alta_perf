@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temas - terror</title>
+    <title>Temas - Ficção científica</title>
     <link rel="stylesheet" href="{% static 'romance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
@@ -22,7 +22,7 @@
     
 
     <div class="colunaLivros">
-        <a href="../comentarios/comentFicção.html">
+        <a href="{% url 'pagina_comentarios_ficção' %}#duna">
         <img src=" {% static 'img/duna.capa.png' %}" alt="capa do livro duna">
         </a><div class="infoLivro">
             <div></div>
@@ -32,11 +32,13 @@
         Ao lado das trilogias ‘Fundação’, de Isaac Asimov, e ‘O Senhor dos Anéis’, de J. R. R. Tolkien, ‘Duna’ é considerada uma das maiores obras de fantasia e ficção científica de todos os tempos. Um premiado best-seller já levado às telas de cinema pelas mãos do consagrado diretor David Lynch </p>
     
          <a class="btnComprar" href="https://www.amazon.com.br/Duna-Frank-Herbert/dp/8576571013" target="_blank">Comprar</a>
-    </div>
+         <a class="btnComentar" href="{% url 'pagina_comentarios_ficção' %}#duna" style="align-self: flex-end;  background-color: #fd675c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Comentários</a>
+
+        </div>
     </div>
 
     <div class="colunaLivros">
-        <a href="../comentarios/comentFicção.html#2001">
+        <a href="{% url 'pagina_comentarios_ficção' %}#2001">
         <img src="{% static 'img/2001capa.livro.png' %}" alt="capa do 2001: Uma Odisséia no Espaço">
         </a><div class="infoLivro">
             <div></div>
@@ -45,11 +47,13 @@
         <p>Nos primórdios da humanidade, quando a fome e os predadores ameaçavam a raça humana, chega à Terra um objeto inusitado, inacessível à limitada compreensão da mente pré-histórica, mas que influencia os homens a descobrir coisas que permitem a sua própria evolução.Milhões de anos depois, a descoberta de um monólito soterrado na Lua deixa os cientistas perplexos. Para investigar esse mistério, a Terra envia ao espaço uma equipe altamente treinada e HAL 9000, uma inteligência artificial responsável pelo funcionamento da nave e pela segurança dos tripulantes. Porém, o surgimento de pequenas falhas levanta a suspeita de que há algo errado com a missão. </p>
     
          <a class="btnComprar" href="https://www.amazon.com.br/2001-Uma-odiss%C3%A9ia-no-espa%C3%A7o/dp/8576571552" target="_blank">Comprar</a>
-    </div>
+        <a class="btnComentar" href="{% url 'pagina_comentarios_ficção' %}#2001" style="align-self: flex-end;  background-color: #fd675c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Comentários</a>
+
+        </div>
     </div>
 
      <div class="colunaLivros">
-        <a href="../comentarios/comentFicção.html#Eu, robô">
+        <a href="{% url 'pagina_comentarios_ficção' %}#Eu, robô">
         <img src="{% static 'img/eu,robo.capa.png' %}" alt="capa do livro  Eu, robô">
         </a><div class="infoLivro">
             <div></div>
@@ -57,7 +61,9 @@
         <p>Autor:  Isaac Asimov</p>
         <p>É uma coleção de contos interligados que explora a evolução da robótica e as complexidades éticas da inteligência artificial através das histórias da robopsicóloga Susan Calvin. As histórias, que se passam em um futuro onde os robôs são comuns, são centradas nas famosas Três Leis da Robótica, e mostram como essas leis, com suas hierarquias e possíveis conflitos, regem o comportamento dos robôs e as interações entre robôs e humanos. </p>
          <a class="btnComprar" href="https://www.amazon.com.br/Eu-Robo-Isaac-Asimov-ebook/dp/B015EED2O2" target="_blank">Comprar</a>
-    </div>
+        <a class="btnComentar" href="{% url 'pagina_comentarios_ficção' %}#Eu, robô" style="align-self: flex-end;  background-color: #fd675c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Comentários</a>
+
+        </div>
     </div>
 
 </div>

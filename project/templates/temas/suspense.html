@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temas - terror</title>
+    <title>Temas - Suspense</title>
     <link rel="stylesheet" href="{% static 'romance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
@@ -22,7 +22,7 @@
     
 
     <div class="colunaLivros">
-        <a href="../comentarios/comentSuspense.html#verity">
+        <a href="{% url 'pagina_comentarios_suspense' %}#verity">
         <img src="{% static 'img/verityCapa.png' %}" alt="capa do livro verity">
     </a>
         <div class="infoLivro">
@@ -31,11 +31,13 @@
         <p>Descreve a história da escritora Lowen Ashleigh, que é contratada para terminar a série de livros inacabados de Verity Crawford, uma famosa autora que está em estado vegetativo após um acidente. Enquanto revisa os manuscritos, Lowen encontra uma autobiografia secreta cheia de revelações perturbadoras sobre a família Crawford, e se vê em uma teia de atração, mentiras e suspense psicológico. </p>
     
          <a class="btnComprar" href="https://www.amazon.com.br/Verity-Colleen-Hoover/dp/8501117846/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1AODZ7V3ZMMM2&dib=eyJ2IjoiMSJ9.gTnMLPMUyupmJ3aVS68C3M7WZaOzlFk0jXDZq6aI22L-15c7J8eBCLJaXiyRK1byWfCDNk98sahfF-W5Jm_LA9GOZsABMghpYQKZ4LyzQA9UKrPomkBYQOTQUTu-yC_nBwH53HXlPXiCbkJP86xAhgLVMCPNmy_NDgijJoUjoYeqDSMwxnygEvNkFKXSJ6h_YngUETkVtk2wrzhRNsAf7etIUVOnuSKE8Nx0YVyw1-k.YLB--65AuVms5wluIBM2_jm6wnHMZ14UTQFz3ssViCg&dib_tag=se&keywords=verity&qid=1762340983&s=books&sprefix=verity%2Cstripbooks%2C434&sr=1-1" target="_blank">Comprar</a>
-    </div>
+         <a class="btnComentar" href="{% url 'pagina_comentarios_suspense' %}#verity" style="align-self: flex-end;  background-color: #fd675c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Comentários</a>
+
+        </div>
     </div>
 
     <div class="colunaLivros">
-        <a href="../comentarios/comentSuspense.html#misery">
+        <a href="{% url 'pagina_comentarios_suspense' %}#misery">
         <img src="{% static 'img/miseryCapa.png' %}" alt="capa do livro misery">
     </a>
         <div class="infoLivro">
@@ -44,18 +46,23 @@
         <p>Paul Sheldon é um escritor famoso, reconhecido por uma série de best-sellers protagonizados pela mesma personagem: Misery Chastain. Annie Wilkes é uma enfermeira aposentada, leitora voraz e obcecada pela história de Misery. Quando Paul sofre um acidente de carro em uma nevasca, ele é resgatado justamente por Annie, e esse encontro entre fã e autor é o ponto de partida de uma das tramas mais aterrorizantes de Stephen King.Insatisfeita com o final do último livro da série, a fã isola o autor debilitado em um quarto em sua casa. Com torturas, ameaças e uma vigilância persistente, ela faz de tudo para obrigá-lo a reescrever a narrativa com o final que ela considera apropriado. Considerada uma das vilãs mais assustadoras e complexas do universo King e interpretada por Kathy Bates no filme que se tornou um clássico, Annie Wilkes é a figura que faz de Misery um livro essencial.</p>
     
          <a class="btnComprar" href="https://www.amazon.com.br/Misery-Stephen-King/dp/8581052142/ref=sr_1_1?crid=P5HOIXNZF00X&dib=eyJ2IjoiMSJ9.pSf5J6ZsDO3kBl-xT4Dj5UwBjRcnwTqIy5VWJ_T2bHWFOP87TB5zGOEoZ8329UxTulqQ0qLXLwdDv0YItzxnx9dj6nF5cPzq-rlZpnwct_N-l-gWYqOgoTxR2wv239taW1JvgDo3DLIWAb6moZLMuZj4mPNbDW56MXoihKPY2Rpl-yBrqHQfvk49YietQOt9ZqEDdGX5KNIpVbZ2WOZWk4cuxSDyS3eV8K8otCCC3rQ.2eZqoKjTU-lwF5P5B0VFNsj2ORa3OK_GTF6dmVd6558&dib_tag=se&keywords=misery&qid=1762341872&s=books&sprefix=mis%2Cstripbooks%2C215&sr=1-1" target="_blank">Comprar</a>
-    </div>
+         <a class="btnComentar" href="{% url 'pagina_comentarios_suspense' %}#misery" style="align-self: flex-end;  background-color: #fd675c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Comentários</a>
+
+        </div>
     </div>
 
      <div class="colunaLivros">
-        <a href="../comentarios/comentSuspense.html#e-nao-sobrou-nenhum">
+        <a href="{% url 'pagina_comentarios_suspense' %}#e-nao-sobrou-nenhum">
         <img src="{% static 'img/e-nao-sobrou-nenhum-capa.png' %}" alt="capa do livro e não sobrou nenhum">
     </a>
         <div class="infoLivro">
         <h3 style="color: rgb(255, 16, 107);">E não sobrou nenhum</h3>
         <p>Autor: Agatha Christie</p>
         <p>Dez estranhos que não se conhecem são convidados para uma ilha isolada por um misterioso anfitrião, o "Mr. Owen". Lá, eles são acusados de crimes do passado e, um a um, começam a ser assassinados. Sem comunicação com o continente devido a uma tempestade, a estadia se transforma em um pesadelo onde todos são suspeitos e a cada morte, um dos dez soldadinhos de porcelana da decoração desaparece. </p>
-         <a class="btnComprar" href="https://www.amazon.com.br/n%C3%A3o-sobrou-nenhum-Agatha-Christie/dp/8525057010/ref=sr_1_1?crid=2BN3FOI36O12J&dib=eyJ2IjoiMSJ9.sLkx4p7v6HQuCKOyWyd-2NEgqq9D2RBwcO4XDA1CRmaRUzwXfxYx5um7uTYHIprmpwgu-7uwFLVQ89EXTMCgxVVv6HtLpfYs9O1R0tvgpPwh-3fQ0a3JGcYms1UCu94XeC4V8mM5LTB532Q5llKx4lEitE2w24dhWu0UvhhNhXqxPljuryPgndkcuWqTG_-Cudp7NLtHjx4LO2tU4XfAeZCcYQy9Pzo5_AhanWGJa8U.VPgEYGxvnwHBPH08ERCQ3Ah7Usk6r6AFJVCLFV7GxVU&dib_tag=se&keywords=e+n%C3%A3o+sobrou+nenhum&qid=1762341502&s=books&sprefix=e+n%C3%A3o+s%2Cstripbooks%2C599&sr=1-1" target="_blank">Comprar</a>
+         
+        <a class="btnComprar" href="https://www.amazon.com.br/n%C3%A3o-sobrou-nenhum-Agatha-Christie/dp/8525057010/ref=sr_1_1?crid=2BN3FOI36O12J&dib=eyJ2IjoiMSJ9.sLkx4p7v6HQuCKOyWyd-2NEgqq9D2RBwcO4XDA1CRmaRUzwXfxYx5um7uTYHIprmpwgu-7uwFLVQ89EXTMCgxVVv6HtLpfYs9O1R0tvgpPwh-3fQ0a3JGcYms1UCu94XeC4V8mM5LTB532Q5llKx4lEitE2w24dhWu0UvhhNhXqxPljuryPgndkcuWqTG_-Cudp7NLtHjx4LO2tU4XfAeZCcYQy9Pzo5_AhanWGJa8U.VPgEYGxvnwHBPH08ERCQ3Ah7Usk6r6AFJVCLFV7GxVU&dib_tag=se&keywords=e+n%C3%A3o+sobrou+nenhum&qid=1762341502&s=books&sprefix=e+n%C3%A3o+s%2Cstripbooks%2C599&sr=1-1" target="_blank">Comprar</a>
+        <a class="btnComentar" href="{% url 'pagina_comentarios_suspense' %}#e-nao-sobrou-nenhum" style="align-self: flex-end;  background-color: #fd675c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Comentários</a>
+
     </div>
     </div>
 

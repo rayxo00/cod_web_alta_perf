@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comentários - Terror</title>
-    <link rel="stylesheet" href="comentRomance.css">
+    <link rel="stylesheet" href="{% static 'comentRomance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
 </head>
@@ -19,7 +19,7 @@
       <h2>Discussão: It a coisa</h2>
 
       <div class="livro-box">
-      <img src="../img/it-acoisa.png" alt="it a coisa capa" class="livro-img">
+      <img src="{% static 'img/it-acoisa.png' %}" alt="it a coisa capa" class="livro-img">
 
       <div  class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
@@ -87,7 +87,7 @@
       <h2>Discussão: Drácula</h2>
 
       <div class="livro-box">
-        <img src="../img/drácula-livro.png" alt="Drácula capa" class="livro-img">
+        <img src="{% static 'img/drácula-livro.png' %}" alt="Drácula capa" class="livro-img">
       
         <div class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
@@ -156,7 +156,7 @@
       <h2>Discussão: O exorcista</h2>
 
       <div class="livro-box">
-        <img src="../img/oexorcista-capa.png" alt="o exorcista capa" class="livro-img">
+        <img src="{% static 'img/oexorcista-capa.png' %}" alt="o exorcista capa" class="livro-img">
       
         <div class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>

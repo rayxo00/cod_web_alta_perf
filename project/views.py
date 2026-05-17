@@ -33,6 +33,24 @@ def pagina_suspense(request):
 def pagina_terror(request):
     return render(request, 'temas/terror.html')
 
+def pagina_comentarios_distopia(request):
+    return render(request, 'comentarios/comentDistopia.html') 
+
+def pagina_comentarios_fantasia(request):
+    return render(request, 'comentarios/comentFantasia.html')
+
+def pagina_comentarios_ficção(request):
+    return render(request, 'comentarios/comentFicção.html')
+
+def pagina_comentarios_romance(request):
+    return render(request, 'comentarios/comentRomance.html')
+
+def pagina_comentarios_suspense(request):
+    return render(request, 'comentarios/comentSuspense.html')
+
+def pagina_comentarios_terror(request):
+    return render(request, 'comentarios/comentTerror.html')
+
 # View para renderizar a página de distopia
 def pagina_distopia(request):
     livros = Livro.objects.filter(categoria='distopia')

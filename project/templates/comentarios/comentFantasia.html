@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comentários - Fantasia</title>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
-    <link rel="stylesheet" href="comentRomance.css">
+    <link rel="stylesheet" href="{% static 'comentRomance.css' %}">
 </head>
 <body>
     <div id="a-rainha-vermelha">
@@ -15,7 +15,7 @@
       <h2>Discussão: A rainha vermelha</h2>
 
       <div class="livro-box">
-      <img src="../img/a-rainha-vermelha-capa.png" alt="A rainha vermelha capa" class="livro-img">
+      <img src="{% static 'img/a-rainha-vermelha-capa.png' %}" alt="A rainha vermelha capa" class="livro-img">
 
       <div  class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2025</p>
@@ -83,7 +83,7 @@
       <h2>Discussão: De sangue e cinzas</h2>
 
       <div class="livro-box">
-        <img src="../img/de-sangue-e-cinzas-capa.png" alt="de sangue e cinzas capa" class="livro-img">
+        <img src="{% static 'img/de-sangue-e-cinzas-capa.png' %}" alt="de sangue e cinzas capa" class="livro-img">
       
         <div class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2025</p>
@@ -151,7 +151,7 @@
       <h2>Discussão: O principe cruel</h2>
 
       <div class="livro-box">
-        <img src="../img/o-principe-cruel-capa.png" alt="o principe cruel capa" class="livro-img">
+        <img src="{% static 'img/o-principe-cruel-capa.png' %}" alt="o principe cruel capa" class="livro-img">
       
         <div class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2025</p>

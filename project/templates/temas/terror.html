@@ -22,7 +22,7 @@
     
 
     <div class="colunaLivros">
-        <a href="../comentarios/comentTerror.html#it-acoisa">
+        <a href="{% url 'pagina_comentarios_terror' %}#it-acoisa">
         <img src="{% static 'img/it-acoisa.png' %}" alt="capa do livro it a coisa">
         </a><div class="infoLivro">
             <div></div>
@@ -31,11 +31,13 @@
         <p>Conta a história de um grupo de sete amigos inseparáveis em Derry, no Maine, que lutam contra uma entidade maligna que se manifesta na forma de seus maiores medos, principalmente o do palhaço Pennywise. A história é contada em duas linhas do tempo: a infância dos amigos em 1958, quando enfrentam a criatura pela primeira vez, e a vida adulta em 1985, quando precisam retornar a Derry para cumprir uma promessa de enfrentá-la novamente após sua volta. A narrativa explora temas como amizade, preconceito e o trauma, culminando em um confronto final onde a união e a bravura dos amigos enfraquecem a Coisa. </p>
     
          <a class="btnComprar" href="https://www.amazon.com.br/coisa-livro-origem-s%C3%A9rie-Bem-vindos/dp/8560280944/ref=sr_1_1?crid=2Q6MFPX9OXSXY&dib=eyJ2IjoiMSJ9.S-DZk1QC62-WfVo3hFlwJ49fbLCcy0p5TbLnONIblIa8VnzZ_amVapAUD7kW-z6SJFyhg8dpEcH1Eqp7vOBl3-ijU-3Z-rd25OQhFqgfj7bALxdHSGU8S2n58DCfRyyG_Ausl5vqwRnUR2vvkqx_TYqgfgwBHTjP7B033C_5AhVXQWYqr2fie3_jydBuSSE3DPWQlCc81BzgDmEzY6DKRniFPIff0aUbJJBljM8UfzM.YjFu5TOSwJqPyUjxnlEjU3TQqN1uQkGaFzh8T-FDpnY&dib_tag=se&keywords=it+a+coisa&qid=1762217487&s=books&sprefix=it+%2Cstripbooks%" target="_blank">Comprar</a>
-    </div>
+         <a class="btnComentar" href="{% url 'pagina_comentarios_terror' %}#it-acoisa" style="align-self: flex-end;  background-color: #fd675c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Comentários</a>
+
+        </div>
     </div>
 
     <div class="colunaLivros">
-        <a href="../comentarios/comentTerror.html#Dracula">
+        <a href="{% url 'pagina_comentarios_terror' %}#Dracula">
         <img src="{% static 'img/drácula-livro.png' %}">
         </a>
         <div class="infoLivro">
@@ -46,18 +48,23 @@
         <p>Narra a história de Jonathan Harker, um agente imobiliário que viaja para a Transilvânia para finalizar a compra de uma propriedade na Inglaterra pelo excêntrico Conde Drácula. Harker descobre que o conde é um vampiro preso em seu castelo e, após a fuga, o conde se muda para Londres para aterrorizar a cidade. Um grupo de heróis, liderado pelo professor Van Helsing, se une para caçar e destruir o vampiro, numa luta épica entre o bem e o mal.  </p>
     
          <a class="btnComprar" href="https://www.amazon.com.br/Dr%C3%A1cula-Bram-Stoker/dp/6555520000/ref=sr_1_2?crid=2QW9WYX71TK8&dib=eyJ2IjoiMSJ9.VUf1TYPbjit4WpYz39v6amclEb4VwV7LJ1ZWhrnKvHCQN5Q_LU3k_9LXrSmE6LLHi6BHnU0z26NCqNhj5jDqTq65ZdCpHixjVVRVe_BEVEmkpQ8miaJGoHlLF3tBoMJALvxacC-kSKKdCT76BMA9pNrw_61AC9ZvxFPzuhAGUeekgd7NsMrpQO9hGqdYLt8gNHOPlVoo5MwrtRYmmMPDhYVpM_9oW_3BLpsCqqLHwcA.pBjG_gs6P9zKWZtB-jcHXfqZ9wpmCox2b2rDd4-GpF8&dib_tag=se&keywords=dr%C3%A1cula+bram+stoker&qid=1762217591&s=books&sprefix=dr%C3%A1%2Cstripbooks%2C241&sr=1-2" target="_blank">Comprar</a>
-    </div>
+         <a class="btnComentar" href="{% url 'pagina_comentarios_terror' %}#Dracula" style="align-self: flex-end;  background-color: #fd675c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Comentários</a>
+
+        </div>
     </div>
 
      <div class="colunaLivros">
-        <a href="../comentarios/comentTerror.html#o-exorcista">
+        <a href="{% url 'pagina_comentarios_terror' %}#o-exorcista">
         <img src="{% static 'img/oexorcista-capa.png' %}" alt="capa do livro O Exorcista">
         </a><div class="infoLivro">
             <div></div>
         <h3 style="color: rgb(37, 187, 17);">O Exorcista</h3>
         <p>Autor: William Peter Blatty</p>
         <p>Quatro décadas após chocar o mundo inteiro, O Exorcista permanece uma metáfora moderna do combate entre o sagrado e o profano, em um dos romances mais macabros já escritos.Inspirado no caso real do exorcismo de um adolescente, o escritor William Peter Blatty publicou em 1971 a perturbadora história de Chris MacNeil, uma atriz que sofre com inesperadas mudanças no comportamento da filha de 11 anos, Regan. Quando todos os esforços da ciência para descobrir o que há de errado com a menina falham e uma personalidade demoníaca parece vir à tona, Chris busca a ajuda da Igreja para tentar livrar a filha do que parece ser um raro caso de possessão. Cabe a Damien Karras, um padre da Universidade de Georgetown, salvar a alma de Regan.Neste livro, Blatty conseguiu dar ao demônio a sua face mais revoltante: a corrupção de uma alma inocente. Um clássico incomparável do terror, O Exorcista não se trata apenas de uma simples história sobre o bem contra o mal, ou sobre Deus contra o Demônio, mas também sobre a renovação da fé.</p>
-         <a class="btnComprar" href="https://www.amazon.com.br/Exorcista-William-Peter-Blatty/dp/8595086230/ref=sr_1_1?crid=39B75KPJM6AXN&dib=eyJ2IjoiMSJ9.YRPg9K9baUhuDXvVgfGQLic-rEZpJQqCh1VgOxEGhsda4kWlMPx3hFkUkk6fu3cp9kmIFTP5ojhudtnWvNJLyqrX1tffQRsRN8ATQ8YfJM-suwYhCGSRs7hB_J2mVKNkpyVmTRCvmqLfgGMzJWqEbo5VHBSYPCarw55zuf_0rPobSKEiPfkwX9nbtk47Sch695k43_o-2RYnShmQC_hzjwZeg8IMz_8D56IhJHmI1EE._1DCI2E7ZVETshzPFe3VVUWV6eRo-56xvmE5Yb5Z0Oo&dib_tag=se&keywords=o+exorcista&qid=1762217842&s=books&sprefix=o+e%2Cstripbooks%2C356&sr=1-1" target="_blank">Comprar</a>
+        
+        <a class="btnComprar" href="https://www.amazon.com.br/Exorcista-William-Peter-Blatty/dp/8595086230/ref=sr_1_1?crid=39B75KPJM6AXN&dib=eyJ2IjoiMSJ9.YRPg9K9baUhuDXvVgfGQLic-rEZpJQqCh1VgOxEGhsda4kWlMPx3hFkUkk6fu3cp9kmIFTP5ojhudtnWvNJLyqrX1tffQRsRN8ATQ8YfJM-suwYhCGSRs7hB_J2mVKNkpyVmTRCvmqLfgGMzJWqEbo5VHBSYPCarw55zuf_0rPobSKEiPfkwX9nbtk47Sch695k43_o-2RYnShmQC_hzjwZeg8IMz_8D56IhJHmI1EE._1DCI2E7ZVETshzPFe3VVUWV6eRo-56xvmE5Yb5Z0Oo&dib_tag=se&keywords=o+exorcista&qid=1762217842&s=books&sprefix=o+e%2Cstripbooks%2C356&sr=1-1" target="_blank">Comprar</a>
+        <a class="btnComentar" href="{% url 'pagina_comentarios_terror' %}#o-exorcista" style="align-self: flex-end;  background-color: #fd675c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Comentários</a>
+
     </div>
     </div>
 

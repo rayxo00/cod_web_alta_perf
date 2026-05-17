@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comentários - Romance</title>
-    <link rel="stylesheet" href="comentRomance.css">
+    <link rel="stylesheet" href="{% static 'comentRomance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
 </head>
@@ -19,7 +19,7 @@
       <h2>Discussão: Amor Teoricamente</h2>
 
       <div class="livro-box">
-      <img src="../img/amorteoricamentecapa.png" alt="amor teoricamente capa" class="livro-img">
+      <img src="{% static 'img/amorteoricamentecapa.png' %}" alt="amor teoricamente capa" class="livro-img">
 
       <div  class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2025</p>
@@ -91,7 +91,7 @@
       <h2>Discussão: A hipótese do amor</h2>
 
       <div class="livro-box">
-        <img src="../img/hipotesecapa.png" alt="a hipotese do amor capa" class="livro-img">
+        <img src="{% static 'img/hipotesecapa.png' %}" alt="a hipotese do amor capa" class="livro-img">
       
         <div class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2025</p>
@@ -159,7 +159,7 @@
       <h2>Discussão: O acordo</h2>
 
       <div class="livro-box">
-        <img src="../img/oacordocapa.png" alt="o acordo capa" class="livro-img">
+        <img src="{% static 'img/oacordocapa.png' %}" alt="o acordo capa" class="livro-img">
       
         <div class="livro-texto">
       <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2025</p>
