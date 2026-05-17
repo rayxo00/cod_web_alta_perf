@@ -1,11 +1,11 @@
 
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
 
@@ -14,18 +14,18 @@
     <div id="tudo">
 
             <div id="header">  
-                <img src="img/iconCasa.png" alt="icon casa" style="width: 3%; height: auto;" >
+                <img src="{% static 'img/iconCasa.png' %}" alt="icon casa" style="width: 3%; height: auto;" >
                 <ul class="itensMenu">
-                    <li><a href="index.html"><b>Home</b></a></li>
-                    <li><a href="favoritos/favoritos.html"><b>Favoritos</b></a></li>
-                    <li><a href="suporte/suporte.html"><b>Suporte</b></a></li>
+                    <li><a href="{% url 'index' %}"><b>Home</b></a></li>
+                    <li><a href="{% url 'pagina_favoritos' %}"><b>Favoritos</b></a></li>
+                    <li><a href="{% url 'pagina_suporte' %}"><b>Suporte</b></a></li>
                 </ul>
             </div>
           
 
            
             <div id="banner">
-                <img src="img/banner2 (1).png" alt="banner" style="border-bottom: 2px solid #000;" width="100%" height="auto">
+                <img src="{% static 'img/banner.png' %}" alt="banner" style="border-bottom: 2px solid #000;" width="100%" height="auto">
             </div>
 
             <div id="conteudo">
@@ -44,12 +44,12 @@
         <div class="coluna">
         <p class="titulo">Temas de livros</p>
         <ul>
-            <li><a href="temas/suspense.html">Suspense/Mistério</a></li>
-            <li><a href="temas/romance.html">Romance</a></li>
-            <li><a href="temas/fantasia.html">Fantasia</a></li>
-            <li><a href="temas/terror.html">Terror</a></li>
-            <li><a href="temas/distopia.html">Distopia</a></li>
-            <li><a href="temas/ficção.html">Ficção científica</a></li>
+            <li><a href="{% url 'pagina_suspense' %}">Suspense/Mistério</a></li>
+            <li><a href="{% url 'pagina_romance' %}">Romance</a></li>
+            <li><a href="{% url 'pagina_fantasia' %}">Fantasia</a></li>
+            <li><a href="{% url 'pagina_terror' %}">Terror</a></li>
+            <li><a href="{% url 'pagina_distopia' %}">Distopia</a></li>
+            <li><a href="{% url 'pagina_ficção' %}">Ficção científica</a></li>
         </ul>
             </div>
            

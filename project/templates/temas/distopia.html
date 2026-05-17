@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temas - distopia</title>
-    <link rel="stylesheet" href="../temas/romance.css">
+    <link rel="stylesheet" href="{% static 'romance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
 </head>
@@ -14,15 +14,15 @@
         <div id="header">
             <h1 style="font-size: 20px;">Livros de distopia</h1>  
                 <ul class="itensMenu">
-                    <li><a href="../index.html"><b>Home</b></a></li>
-                    <li><a href="../favoritos/favoritos.html"><b>Favoritos</b></a></li>
-                    <li><a href="../suporte/suporte.html"><b>Suporte</b></a></li>
+                    <li><a href="{% url 'index' %}"><b>Home</b></a></li>
+                    <li><a href="{% url 'pagina_favoritos' %}"><b>Favoritos</b></a></li>
+                    <li><a href="{% url 'pagina_suporte' %}"><b>Suporte</b></a></li>
                 </ul>
             </div>
     
 
     <div class="colunaLivros"> <a href="../comentarios/comentDistopia.html#jogos-vorazes">
-        <img src="../img/jogos.vorazescapa.png" alt="capa do livro jogos vorazes">
+        <img src="{% static 'img/jogos.vorazescapa.png' %}" alt="capa do livro jogos vorazes">
         </a><div class="infoLivro">
             <div></div>
         <h3 style="color: rgb(221, 153, 5);">Jogos Vorazes</h3>
@@ -35,7 +35,7 @@
 
     <div class="colunaLivros">
         <a href="../comentarios/comentDistopia.html#Estilhaça-me">
-        <img src="../img/estilhaça-me.capa.png" alt="capa do livro estilhaça-me">
+        <img src="{% static 'img/estilhaça-me.capa.png' %}" alt="capa do livro estilhaça-me">
         </a><div class="infoLivro">
             <div></div>
         <h3 style="color: rgb(91, 128, 207);">Estilhaça-me</h3>
@@ -48,14 +48,15 @@
 
      <div class="colunaLivros">
         <a href="../comentarios/comentDistopia.html#Divergente">
-        <img src="../img/divergente.capa.png" alt="capa do livro divergente">
+        <img src="{% static 'img/divergente.capa.png' %}" alt="capa do livro divergente">
         </a><div class="infoLivro">
             <div></div>
         <h3 style="color: rgb(41, 81, 190);">Divergente</h3>
         <p>Autor: Veronica Roth</p>
         <p>Na futurística cidade de Chicago, ao completar 16 anos, Beatrice precisa escolher entre as diferentes facções em que a cidade está dividida. Cada uma representa um valor diferente e, ao contrário de sua família, a jovem opta pela facção dos destemidos, a Audácia. Ela então se torna Tris e inicia uma jornada para afastar seus medos e descobrir quem realmente é. Durante essa jornada, acaba conhecendo o jovem Quatro, um rapaz experiente que tem o dom de intrigá-la e de encantá-la ao mesmo tempo. </p>
          <a class="btnComprar" href="https://www.amazon.com.br/Divergente-Veronica-Roth/dp/6555321814/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=TY63RHS267Z7&dib=eyJ2IjoiMSJ9.kPMKX8umOabf0VybMnrq7NE580DgEh2oVAMF9aqLXssxbE4UrIHOjI0LhZFEc13Ke1XnuhblDFAxdWFr6dkT0VhnK2k2JUeIUl2WqfduLGgwtixR3U7f4JNDgVNVL3pdvq-feoDTa2NWWG5AsSwenBqNu5ZaMQOXQuvTqogLRw5eULxd7KDS-WxG8sR6D3r0o8-ohan874DZeKEIbgrMQB_DKADBywUuJeLBWZzsYoI.bgqEitMZPLUIxgdC1sd0ZTGjGFwE4Q4LmJSnDQjax_0&dib_tag=se&keywords=divergente&qid=1762300730&s=books&sprefix=divergente%2Cstripbooks%2C274&sr=1-1" target="_blank">Comprar</a>
-    </div>
+    
+        </div>
     </div>
 
 </div>

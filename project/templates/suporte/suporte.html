@@ -1,19 +1,19 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suporte</title>
-    <link rel="stylesheet" href="suporte.css">
+    <link rel="stylesheet" href="{% static 'suporte.css' %}">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 </head>
 <body>
     <div id="header">
-        <img src="../img/iconchat.png" alt="chat icon" style="width: 5%; height: auto;">
+        <img src="{% static 'img/iconchat.png' %}" alt="chat icon" style="width: 5%; height: auto;">
         <ul class="itensMenu">
-            <li><a href="../index.html"><b>Home</b></a></li>
-            <li><a href="../favoritos/favoritos.html"><b>Favoritos</b></a></li>
-            <li><a href="../suporte/suporte.html"><b>Suporte</b></a></li>
+            <li><a href="{% url 'index' %}"><b>Home</b></a></li>
+            <li><a href="{% url 'pagina_favoritos' %}"><b>Favoritos</b></a></li>
+            <li><a href="{% url 'pagina_suporte' %}"><b>Suporte</b></a></li>
         </ul>
     </div>
 

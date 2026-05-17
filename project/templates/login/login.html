@@ -10,7 +10,6 @@
  
         body {
             font-family: "Pixelify Sans", sans-serif;
-            background-image: url(img/fundo.png);
             background-color: #f9e4e4;
             min-height: 100vh;
             display: flex;
@@ -155,19 +154,17 @@
             font-size: 14px;
             padding: 8px 12px;
             border-radius: 4px;
-            display: none;
+            margin-bottom: 10px;
         }
         .msg.erro {
             background-color: #ffd5d8;
             color: #7a0a19;
             border: 1px solid #b11628;
-            display: block;
         }
         .msg.sucesso {
             background-color: #d5ffd8;
             color: #0a5c1a;
             border: 1px solid #1b8c2e;
-            display: block;
         }
  
         .divisor {
@@ -223,11 +220,11 @@
 <body>
  
 <div id="header">
-    <img src="img/iconCasa.png" alt="icon casa" style="width: 3%; height: auto;">
+    <img src="/static/img/iconCasa.png" alt="icon casa" style="width: 3%; height: auto;">
     <ul class="itensMenu">
-        <li><a href="index.html"><b>Home</b></a></li>
-        <li><a href="favoritos/favoritos.html"><b>Favoritos</b></a></li>
-        <li><a href="suporte/suporte.html"><b>Suporte</b></a></li>
+        <li><a href="/"><b>Home</b></a></li>
+        <li><a href="{% url 'pagina_favoritos' %}"><b>Favoritos</b></a></li>
+        <li><a href="#"><b>Suporte</b></a></li>
     </ul>
 </div>
  
@@ -238,58 +235,71 @@
             <button class="tab-btn" onclick="mostrarAba('cadastro')">Cadastrar</button>
         </div>
  
-        <!-- FORMULÁRIO LOGIN -->
-        <div id="form-login" class="auth-form active">
+        {% if messages %}
+            <div style="padding: 15px 28px 0 28px;">
+                {% for message in messages %}
+                    <div class="msg {% if message.tags == 'error' %}erro{% else %}sucesso{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form id="form-login" class="auth-form active" method="POST" action="">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="login">
+
             <h2>📖 Bem-vindo de volta!</h2>
             <p class="subtitulo">Entre para acessar seus favoritos</p>
-            <div id="msg-login" class="msg"></div>
+            
             <div class="field">
                 <label for="login-email">E-mail</label>
-                <input type="email" id="login-email" placeholder="seu@email.com" autocomplete="email">
+                <input type="email" id="login-email" name="email" placeholder="seu@email.com" autocomplete="email" required>
             </div>
             <div class="field">
                 <label for="login-senha">Senha</label>
-                <input type="password" id="login-senha" placeholder="••••••••" autocomplete="current-password">
+                <input type="password" id="login-senha" name="senha" placeholder="••••••••" autocomplete="current-password" required>
             </div>
-            <button class="btn-submit" onclick="fazerLogin()">Entrar</button>
+            <button type="submit" class="btn-submit">Entrar</button>
             <div class="divisor">ou</div>
             <p class="link-alterar">Não tem conta? <a onclick="mostrarAba('cadastro')">Cadastre-se</a></p>
-        </div>
+        </form>
  
-        <!-- FORMULÁRIO CADASTRO -->
-        <div id="form-cadastro" class="auth-form">
+        <form id="form-cadastro" class="auth-form" method="POST" action="">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="cadastro">
+
             <h2>✨ Criar conta</h2>
             <p class="subtitulo">Junte-se à comunidade literária</p>
-            <div id="msg-cadastro" class="msg"></div>
+            
             <div class="field">
                 <label for="cad-nome">Nome completo</label>
-                <input type="text" id="cad-nome" placeholder="Seu nome" autocomplete="name">
+                <input type="text" id="cad-nome" name="nome" placeholder="Seu nome" autocomplete="name" required>
             </div>
             <div class="field">
                 <label for="cad-email">E-mail</label>
-                <input type="email" id="cad-email" placeholder="seu@email.com" autocomplete="email">
+                <input type="email" id="cad-email" name="email" placeholder="seu@email.com" autocomplete="email" required>
             </div>
             <div class="field">
                 <label for="cad-senha">Senha</label>
-                <input type="password" id="cad-senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
-                <span class="req-senha">Use pelo menos 6 caracteres com letras e números.</span>
+                <input type="password" id="cad-senha" name="senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password" required>
+                <span class="req-senha">Use pelo menos 6 caracteres.</span>
             </div>
             <div class="field">
                 <label for="cad-confirma">Confirmar senha</label>
-                <input type="password" id="cad-confirma" placeholder="Repita a senha" autocomplete="new-password">
+                <input type="password" id="cad-confirma" name="confirma_senha" placeholder="Repita a senha" autocomplete="new-password" required>
             </div>
-            <button class="btn-submit" onclick="fazerCadastro()">Criar conta</button>
+            <button type="submit" class="btn-submit">Criar conta</button>
             <div class="divisor">ou</div>
             <p class="link-alterar">Já tem conta? <a onclick="mostrarAba('login')">Entrar</a></p>
-        </div>
+        </form>
     </div>
 </div>
  
 <footer>© 2025 Dreamy Pages — Seu refúgio literário</footer>
  
 <script>
-    const API = 'http://localhost:3000';
- 
+    // Mantemos apenas a função visual para alternar o design das abas na tela
     function mostrarAba(aba) {
         document.getElementById('form-login').classList.remove('active');
         document.getElementById('form-cadastro').classList.remove('active');
@@ -298,97 +308,7 @@
         document.getElementById('form-' + aba).classList.add('active');
         const idx = aba === 'login' ? 0 : 1;
         document.querySelectorAll('.tab-btn')[idx].classList.add('active');
-        limparMensagens();
     }
- 
-    function limparMensagens() {
-        document.querySelectorAll('.msg').forEach(m => {
-            m.className = 'msg';
-            m.textContent = '';
-        });
-    }
- 
-    function mostrarMsg(id, texto, tipo) {
-        const el = document.getElementById(id);
-        el.textContent = texto;
-        el.className = 'msg ' + tipo;
-    }
- 
-    async function fazerLogin() {
-        const email = document.getElementById('login-email').value.trim();
-        const senha = document.getElementById('login-senha').value;
- 
-        if (!email || !senha) {
-            mostrarMsg('msg-login', 'Preencha e-mail e senha.', 'erro');
-            return;
-        }
- 
-        try {
-            const res = await fetch(`${API}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, senha })
-            });
-            const dados = await res.json();
- 
-            if (res.ok) {
-                localStorage.setItem('token', dados.token);
-                localStorage.setItem('usuario', JSON.stringify(dados.usuario));
-                mostrarMsg('msg-login', '✅ Login realizado! Redirecionando...', 'sucesso');
-                setTimeout(() => window.location.href = 'index.html', 1500);
-            } else {
-                mostrarMsg('msg-login', dados.mensagem || 'Erro ao fazer login.', 'erro');
-            }
-        } catch (e) {
-            mostrarMsg('msg-login', 'Servidor indisponível. Tente novamente.', 'erro');
-        }
-    }
- 
-    async function fazerCadastro() {
-        const nome = document.getElementById('cad-nome').value.trim();
-        const email = document.getElementById('cad-email').value.trim();
-        const senha = document.getElementById('cad-senha').value;
-        const confirma = document.getElementById('cad-confirma').value;
- 
-        if (!nome || !email || !senha || !confirma) {
-            mostrarMsg('msg-cadastro', 'Preencha todos os campos.', 'erro');
-            return;
-        }
-        if (senha.length < 6) {
-            mostrarMsg('msg-cadastro', 'A senha deve ter pelo menos 6 caracteres.', 'erro');
-            return;
-        }
-        if (senha !== confirma) {
-            mostrarMsg('msg-cadastro', 'As senhas não coincidem.', 'erro');
-            return;
-        }
- 
-        try {
-            const res = await fetch(`${API}/cadastro`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nome, email, senha })
-            });
-            const dados = await res.json();
- 
-            if (res.ok) {
-                mostrarMsg('msg-cadastro', '✅ Conta criada! Faça login para continuar.', 'sucesso');
-                setTimeout(() => mostrarAba('login'), 1800);
-            } else {
-                mostrarMsg('msg-cadastro', dados.mensagem || 'Erro ao criar conta.', 'erro');
-            }
-        } catch (e) {
-            mostrarMsg('msg-cadastro', 'Servidor indisponível. Tente novamente.', 'erro');
-        }
-    }
- 
-    // Permite Enter nos campos
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const aba = document.getElementById('form-login').classList.contains('active');
-            aba ? fazerLogin() : fazerCadastro();
-        }
-    });
 </script>
 </body>
 </html>

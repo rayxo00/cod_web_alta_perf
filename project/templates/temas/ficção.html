@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temas - terror</title>
-    <link rel="stylesheet" href="../temas/romance.css">
+    <link rel="stylesheet" href="{% static 'romance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
 </head>
@@ -14,16 +14,16 @@
         <div id="header">
             <h1 style="font-size: 20px;">Livros de Ficção Científica</h1>  
                 <ul class="itensMenu">
-                    <li><a href="../index.html"><b>Home</b></a></li>
-                    <li><a href="../favoritos/favoritos.html"><b>Favoritos</b></a></li>
-                    <li><a href="../suporte/suporte.html"><b>Suporte</b></a></li>
+                    <li><a href="{% url 'index' %}"><b>Home</b></a></li>
+                    <li><a href="{% url 'pagina_favoritos' %}"><b>Favoritos</b></a></li>
+                    <li><a href="{% url 'pagina_suporte' %}"><b>Suporte</b></a></li>
                 </ul>
             </div>
     
 
     <div class="colunaLivros">
         <a href="../comentarios/comentFicção.html">
-        <img src="../img/duna.capa.png" alt="capa do livro duna">
+        <img src=" {% static 'img/duna.capa.png' %}" alt="capa do livro duna">
         </a><div class="infoLivro">
             <div></div>
         <h3 style="color: rgb(223, 158, 38);">Duna</h3>
@@ -37,7 +37,7 @@
 
     <div class="colunaLivros">
         <a href="../comentarios/comentFicção.html#2001">
-        <img src="../img/2001capa.livro.png" alt="capa do 2001: Uma Odisséia no Espaço">
+        <img src="{% static 'img/2001capa.livro.png' %}" alt="capa do 2001: Uma Odisséia no Espaço">
         </a><div class="infoLivro">
             <div></div>
         <h3 style="color: rgb(19, 8, 49);">2001: Uma Odisséia no Espaço</h3>
@@ -50,7 +50,7 @@
 
      <div class="colunaLivros">
         <a href="../comentarios/comentFicção.html#Eu, robô">
-        <img src="../img/eu,robo.capa.png" alt="capa do livro  Eu, robô">
+        <img src="{% static 'img/eu,robo.capa.png' %}" alt="capa do livro  Eu, robô">
         </a><div class="infoLivro">
             <div></div>
         <h3 style="color: rgb(107, 69, 39);"> Eu, robô</h3>

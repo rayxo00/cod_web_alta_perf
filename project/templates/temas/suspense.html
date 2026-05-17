@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temas - terror</title>
-    <link rel="stylesheet" href="../temas/romance.css">
+    <link rel="stylesheet" href="{% static 'romance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
 </head>
@@ -14,16 +14,16 @@
         <div id="header">
             <h1 style="font-size: 20px;">Livros de Suspense/Mistério</h1>  
                 <ul class="itensMenu">
-                    <li><a href="../index.html"><b>Home</b></a></li>
-                    <li><a href="../favoritos/favoritos.html"><b>Favoritos</b></a></li>
-                    <li><a href="../suporte/suporte.html"><b>Suporte</b></a></li>
+                    <li><a href="{% url 'index' %}"><b>Home</b></a></li>
+                    <li><a href="{% url 'pagina_favoritos' %}"><b>Favoritos</b></a></li>
+                    <li><a href="{% url 'pagina_suporte' %}"><b>Suporte</b></a></li>
                 </ul>
             </div>
     
 
     <div class="colunaLivros">
         <a href="../comentarios/comentSuspense.html#verity">
-        <img src="../img/verityCapa.png" alt="capa do livro verity">
+        <img src="{% static 'img/verityCapa.png' %}" alt="capa do livro verity">
     </a>
         <div class="infoLivro">
         <h3 style="color: rgb(5, 63, 36);">Verity</h3>
@@ -36,7 +36,7 @@
 
     <div class="colunaLivros">
         <a href="../comentarios/comentSuspense.html#misery">
-        <img src="../img/miseryCapa.png" alt="capa do livro misery">
+        <img src="{% static 'img/miseryCapa.png' %}" alt="capa do livro misery">
     </a>
         <div class="infoLivro">
         <h3 style="color: rgb(46, 86, 146);">Misery</h3>
@@ -49,7 +49,7 @@
 
      <div class="colunaLivros">
         <a href="../comentarios/comentSuspense.html#e-nao-sobrou-nenhum">
-        <img src="../img/e-nao-sobrou-nenhum-capa.png" alt="capa do livro e não sobrou nenhum">
+        <img src="{% static 'img/e-nao-sobrou-nenhum-capa.png' %}" alt="capa do livro e não sobrou nenhum">
     </a>
         <div class="infoLivro">
         <h3 style="color: rgb(255, 16, 107);">E não sobrou nenhum</h3>

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temas - terror</title>
-    <link rel="stylesheet" href="../temas/romance.css">
+    <link rel="stylesheet" href="{% static 'romance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
 </head>
@@ -14,16 +14,16 @@
         <div id="header">
             <h1 style="font-size: 20px;">Livros de terror</h1>  
                 <ul class="itensMenu">
-                    <li><a href="../index.html"><b>Home</b></a></li>
-                    <li><a href="../favoritos/favoritos.html"><b>Favoritos</b></a></li>
-                    <li><a href="../suporte/suporte.html"><b>Suporte</b></a></li>
+                    <li><a href="{% url 'index' %}"><b>Home</b></a></li>
+                    <li><a href="{% url 'pagina_favoritos' %}"><b>Favoritos</b></a></li>
+                    <li><a href="{% url 'pagina_suporte' %}"><b>Suporte</b></a></li>
                 </ul>
             </div>
     
 
     <div class="colunaLivros">
         <a href="../comentarios/comentTerror.html#it-acoisa">
-        <img src="../img/it-acoisa.png" alt="capa do livro it a coisa">
+        <img src="{% static 'img/it-acoisa.png' %}" alt="capa do livro it a coisa">
         </a><div class="infoLivro">
             <div></div>
         <h3 style="color: rgb(192, 0, 0);">It a coisa</h3>
@@ -36,7 +36,7 @@
 
     <div class="colunaLivros">
         <a href="../comentarios/comentTerror.html#Dracula">
-        <img src="../img/drácula-livro.png">
+        <img src="{% static 'img/drácula-livro.png' %}">
         </a>
         <div class="infoLivro">
             <div>
@@ -51,7 +51,7 @@
 
      <div class="colunaLivros">
         <a href="../comentarios/comentTerror.html#o-exorcista">
-        <img src="../img/oexorcista-capa.png" alt="capa do livro O Exorcista">
+        <img src="{% static 'img/oexorcista-capa.png' %}" alt="capa do livro O Exorcista">
         </a><div class="infoLivro">
             <div></div>
         <h3 style="color: rgb(37, 187, 17);">O Exorcista</h3>

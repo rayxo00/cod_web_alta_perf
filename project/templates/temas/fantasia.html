@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temas - fantasia</title>
-    <link rel="stylesheet" href="../temas/romance.css">
+    <link rel="stylesheet" href="{% static 'romance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
 </head>
@@ -14,16 +14,16 @@
         <div id="header">
             <h1 style="font-size: 20px;">Livros de fantasia</h1>  
                 <ul class="itensMenu">
-                    <li><a href="../index.html"><b>Home</b></a></li>
-                    <li><a href="../favoritos/favoritos.html"><b>Favoritos</b></a></li>
-                    <li><a href="../suporte/suporte.html"><b>Suporte</b></a></li>
+                    <li><a href="{% url 'index' %}"><b>Home</b></a></li>
+                    <li><a href="{% url 'pagina_favoritos' %}"><b>Favoritos</b></a></li>
+                    <li><a href="{% url 'pagina_suporte' %}"><b>Suporte</b></a></li>
                 </ul>
             </div>
     
 
     <div class="colunaLivros">
         <a href="../comentarios/comentFantasia.html#a-rainha-vermelha">
-        <img src="../img/a-rainha-vermelha-capa.png" alt="capa do livro a rainha vermelha">
+        <img src="{% static 'img/a-rainha-vermelha-capa.png' %}" alt="capa do livro a rainha vermelha">
     </a>
         <div class="infoLivro">
         <h3 style="color: rgb(107, 134, 150);">A Rainha Vermelha</h3>
@@ -36,7 +36,7 @@
 
     <div class="colunaLivros">
         <a href="../comentarios/comentFantasia.html#de-sangue-e-cinzas">
-        <img src="../img/de-sangue-e-cinzas-capa.png" alt="capa do livro de sangue e cinzas">
+        <img src="{% static 'img/de-sangue-e-cinzas-capa.png' %}" alt="capa do livro de sangue e cinzas">
     </a>
         <div class="infoLivro">
         <h3 style="color: rgb(211, 12, 12);">De sangue e cinzas</h3>
@@ -50,7 +50,7 @@
 
      <div class="colunaLivros">
         <a href="../comentarios/comentFantasia.html#o-principe-cruel">
-        <img src="../img/o-principe-cruel-capa.png" alt="capa do livro o Principe cruel">
+        <img src="{% static 'img/o-principe-cruel-capa.png' %}" alt="capa do livro o Principe cruel">
     </a>
         <div class="infoLivro">
         <h3 style="color: rgb(212, 168, 46);">O Principe cruel</h3>
