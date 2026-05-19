@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta — Dreamy Pages</title>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify+Sans'>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+        body {
+            font-family: "Pixelify Sans", sans-serif;
+            background-color: #f9e4e4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2%;
+        }
+ 
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 25px;
+            background-color: #fff1f8;
+            color: #b11628;
+            border-bottom: 2px solid #b11628;
+        }
+        #header img { image-rendering: pixelated; }
+        .itensMenu { display: flex; gap: 25px; list-style: none; }
+        .itensMenu a {
+            text-decoration: none;
+            color: #b11628;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+        .itensMenu a:hover { text-decoration: underline; }
+ 
+        #main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+ 
+        .account-box {
+            background-color: #fff1f8;
+            border: 2px solid #b11628;
+            border-radius: 6px;
+            box-shadow: 4px 4px 0px #5c0c15;
+            width: 100%;
+            max-width: 420px;
+            overflow: hidden;
+            padding: 30px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+ 
+        .account-box h2 {
+            text-align: center;
+            font-size: 22px;
+            color: #b2192c;
+            margin-bottom: 4px;
+        }
+        .account-box .subtitulo {
+            text-align: center;
+            font-size: 14px;
+            color: #8a3040;
+            margin-top: -10px;
+            margin-bottom: 5px;
+        }
+ 
+        .info-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            border-bottom: 1px dashed #d4a0aa;
+            padding-bottom: 12px;
+        }
+        .info-field:last-of-type {
+            border-bottom: none;
+        }
+        .info-field label {
+            font-size: 15px;
+            color: #7a0a19;
+            font-weight: bold;
+        }
+        .info-field .value {
+            font-size: 15px;
+            color: #3a0010;
+            background-color: #fff8fb;
+            padding: 10px 12px;
+            border: 2px solid #b11628;
+            border-radius: 4px;
+        }
+ 
+        .btn-logout {
+            text-align: center;
+            font-family: "Pixelify Sans", sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px;
+            background-color: #b2192c;
+            color: #fff1f8;
+            border: 2px solid #5c0c15;
+            border-radius: 4px;
+            box-shadow: 3px 3px 0px #5c0c15;
+            cursor: pointer;
+            transition: 0.15s;
+            text-decoration: none;
+            margin-top: 4px;
+        }
+        .btn-logout:hover {
+            background-color: #e65447;
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #5c0c15;
+        }
+        .btn-logout:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #5c0c15;
+        }
+ 
+        footer {
+            text-align: center;
+            font-family: "Pixelify Sans", sans-serif;
+            color: #5c0c15;
+            font-size: 14px;
+            padding: 16px;
+            background-color: #fff1f8;
+            border-top: 2px solid #b11628;
+        }
+    </style>
+</head>
+<body>
+ 
+<div id="header">
+    <img src="/static/img/iconCasa.png" alt="icon casa" style="width: 3%; height: auto;">
+    <ul class="itensMenu">
+        <li><a href="/"><b>Home</b></a></li>
+        <li><a href="{% url 'pagina_favoritos' %}"><b>Favoritos</b></a></li>
+        <li><a href="{% url 'pagina_conta' %}"><b>Minha Conta</b></a></li>
+    </ul>
+</div>
+ 
+<div id="main">
+    <div class="account-box">
+        <h2>📖 Perfil do Usuário</h2>
+        <p class="subtitulo">Suas informações salvas no Dreamy Pages</p>
+ 
+        <div class="info-field">
+            <label>Nome Completo</label>
+            <div class="value">{{ usuario.first_name }}</div>
+        </div>
+ 
+        <div class="info-field">
+            <label>E-mail Cadastrado</label>
+            <div class="value">{{ usuario.email }}</div>
+        </div>
+
+        <div class="info-field">
+            <label>Data de Ingresso</label>
+            <div class="value">{{ usuario.date_joined|date:"d/m/Y" }}</div>
+        </div>
+ 
+        <a href="{% url 'logout_usuario' %}" class="btn-logout">Sair da Conta</a>
+    </div>
+</div>
+ 
+<footer>© 2025 Dreamy Pages — Seu refúgio literário</footer>
+ 
+</body>
+</html>

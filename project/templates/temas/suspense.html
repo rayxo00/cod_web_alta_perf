@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="{% static 'romance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
+<style>
+    .btn-favorito {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #ccc;
+        transition: color 0.2s, transform 0.1s;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+    .btn-favorito.ativo {
+        color: #ffca28;
+    }
+    .btn-favorito:active {
+        transform: scale(1.2);
+    }
+</style>
+
 </head>
 <body>
     <div id="tudo">
@@ -26,7 +45,7 @@
         <img src="{% static 'img/verityCapa.png' %}" alt="capa do livro verity">
     </a>
         <div class="infoLivro">
-        <h3 style="color: rgb(5, 63, 36);">Verity</h3>
+        <h3 style="color: rgb(5, 63, 36);">Verity<button class="btn-favorito {% if 'Verity' in titulos_favoritados %}ativo{% endif %}" data-titulo="Verity" data-autor="Colleen Hoover">★</button></h3>
         <p>Autor: Colleen Hoover</p>
         <p>Descreve a história da escritora Lowen Ashleigh, que é contratada para terminar a série de livros inacabados de Verity Crawford, uma famosa autora que está em estado vegetativo após um acidente. Enquanto revisa os manuscritos, Lowen encontra uma autobiografia secreta cheia de revelações perturbadoras sobre a família Crawford, e se vê em uma teia de atração, mentiras e suspense psicológico. </p>
     
@@ -41,7 +60,7 @@
         <img src="{% static 'img/miseryCapa.png' %}" alt="capa do livro misery">
     </a>
         <div class="infoLivro">
-        <h3 style="color: rgb(46, 86, 146);">Misery</h3>
+        <h3 style="color: rgb(46, 86, 146);">Misery<button class="btn-favorito {% if 'Misery' in titulos_favoritados %}ativo{% endif %}" data-titulo="Misery" data-autor="Stephen King">★</button></h3>
         <p>Autor: Stephen King</p>
         <p>Paul Sheldon é um escritor famoso, reconhecido por uma série de best-sellers protagonizados pela mesma personagem: Misery Chastain. Annie Wilkes é uma enfermeira aposentada, leitora voraz e obcecada pela história de Misery. Quando Paul sofre um acidente de carro em uma nevasca, ele é resgatado justamente por Annie, e esse encontro entre fã e autor é o ponto de partida de uma das tramas mais aterrorizantes de Stephen King.Insatisfeita com o final do último livro da série, a fã isola o autor debilitado em um quarto em sua casa. Com torturas, ameaças e uma vigilância persistente, ela faz de tudo para obrigá-lo a reescrever a narrativa com o final que ela considera apropriado. Considerada uma das vilãs mais assustadoras e complexas do universo King e interpretada por Kathy Bates no filme que se tornou um clássico, Annie Wilkes é a figura que faz de Misery um livro essencial.</p>
     
@@ -56,7 +75,7 @@
         <img src="{% static 'img/e-nao-sobrou-nenhum-capa.png' %}" alt="capa do livro e não sobrou nenhum">
     </a>
         <div class="infoLivro">
-        <h3 style="color: rgb(255, 16, 107);">E não sobrou nenhum</h3>
+        <h3 style="color: rgb(255, 16, 107);">E não sobrou nenhum<button class="btn-favorito {% if 'E não sobrou nenhum' in titulos_favoritados %}ativo{% endif %}" data-titulo="E não sobrou nenhum" data-autor="Agatha Christie">★</button></h3>
         <p>Autor: Agatha Christie</p>
         <p>Dez estranhos que não se conhecem são convidados para uma ilha isolada por um misterioso anfitrião, o "Mr. Owen". Lá, eles são acusados de crimes do passado e, um a um, começam a ser assassinados. Sem comunicação com o continente devido a uma tempestade, a estadia se transforma em um pesadelo onde todos são suspeitos e a cada morte, um dos dez soldadinhos de porcelana da decoração desaparece. </p>
          
@@ -68,5 +87,41 @@
 
 </div>
 </div>
+
+<script>
+    document.querySelectorAll('.btn-favorito').forEach(botao => {
+        botao.addEventListener('click', function(e) {
+            e.preventDefault();
+            const btn = this;
+            const titulo = btn.getAttribute('data-titulo');
+            const autor = btn.getAttribute('data-autor');
+
+            fetch("/favoritar-js/", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ titulo: titulo, autor: autor })
+            })
+            .then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.favoritado) {
+                    btn.classList.add('ativo');
+                } else if (data) {
+                    btn.classList.remove('ativo');
+                }
+            })
+            .catch(err => console.error("Erro ao favoritar:", err));
+        });
+    });
+</script>
+
 </body>
 </html>

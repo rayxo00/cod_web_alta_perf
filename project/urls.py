@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from project import views
+from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -38,5 +39,9 @@ urlpatterns = [
     path('favoritar/<int:livro_id>/', views.favoritar_livro, name='favoritar_livro'),
     path('login/', views.login_cadastro_usuario, name='login_usuario'),
     path('favoritos/', views.pagina_favoritos, name='pagina_favoritos'),
+    path('conta/', views.pagina_conta, name='pagina_conta'),
+    path('logout/', views.logout_usuario, name='logout_usuario'),
+
+    path('favoritar-js/', views.favoritar_livro_js, name='favoritar_livro_js'),
 
 ]

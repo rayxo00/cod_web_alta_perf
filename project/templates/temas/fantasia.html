@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="{% static 'romance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
+<style>
+    .btn-favorito {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #ccc;
+        transition: color 0.2s, transform 0.1s;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+    .btn-favorito.ativo {
+        color: #ffca28;
+    }
+    .btn-favorito:active {
+        transform: scale(1.2);
+    }
+</style>
+
 </head>
 <body>
     <div id="tudo">
@@ -26,8 +45,7 @@
         <img src="{% static 'img/a-rainha-vermelha-capa.png' %}" alt="capa do livro a rainha vermelha">
     </a>
         <div class="infoLivro">
-        <h3 style="color: rgb(107, 134, 150);">A Rainha Vermelha</h3>
-        <p>Autor: Victoria Aveyard</p>
+<h3 style="color: rgb(107, 134, 150);">A Rainha Vermelha <button class="btn-favorito {% if 'A Rainha Vermelha' in titulos_favoritados %}ativo{% endif %}" data-titulo="A Rainha Vermelha" data-autor="Victoria Aveyard">★</button></h3>        <p>Autor: Victoria Aveyard</p>
         <p>O mundo de Mare Barrow é dividido pelo sangue: vermelho ou prateado. Mare e sua família são vermelhos: plebeus, humildes, destinados a servir uma elite prateada cujos poderes sobrenaturais os tornam quase deuses. Mare rouba o que pode para ajudar sua família a sobreviver e não tem esperanças de escapar do vilarejo miserável onde mora. Entretanto, numa reviravolta do destino, ela consegue um emprego no palácio real, onde, em frente ao rei e a toda a nobreza, descobre que tem um poder misterioso… Mas como isso seria possível, se seu sangue é vermelho? Em meio às intrigas dos nobres prateados, as ações da garota vão desencadear uma dança violenta e fatal, que colocará príncipe contra príncipe - e Mare contra seu próprio coração. </p>
     
          <a class="btnComprar" href="https://www.amazon.com.br/rainha-vermelha-Victoria-Aveyard/dp/8565765695/ref=sr_1_1?crid=2L3VZHG9TCXJB&dib=eyJ2IjoiMSJ9.RxlaQfcD9YXWK8QEANadr7XKeZjeVoBUg5iBbnrp4Xplvgb-CnSPdyJh2I6iaA4HKER0sBo0qad0MpQ937Ua37XTT2dbt7MAPRB0kaNY6yvC0ott9hbmf0PIS9Lm-tQB8GqJ4XOxqMolPMO98pg2SbXUs3Ti3GoIbW8kYQVhFlFn_Ati_hBksMuL5d97G-ihr-tsVhZQL8IvDN7M6aLmeYyaQfcJI3JbiMIgkA4mrfI.IHm6xSNMDlwY6jFFdFGdOmzXCQh3TbWZD-IzOeJ9vdg&dib_tag=se&keywords=a+rainha+vermelha&qid=1762216707&s=books&sprefix=a+rainha+%2Cstripbooks%2C1259&sr=1-1" target="_blank">Comprar</a>
@@ -40,8 +58,7 @@
         <img src="{% static 'img/de-sangue-e-cinzas-capa.png' %}" alt="capa do livro de sangue e cinzas">
     </a>
         <div class="infoLivro">
-        <h3 style="color: rgb(211, 12, 12);">De sangue e cinzas</h3>
-        <p>Autor: Jennifer L. Armentrout</p>
+<h3 style="color: rgb(211, 12, 12);">De sangue e cinzas <button class="btn-favorito {% if 'De sangue e cinzas' in titulos_favoritados %}ativo{% endif %}" data-titulo="De sangue e cinzas" data-autor="Jennifer L. Armentrout">★</button></h3>        <p>Autor: Jennifer L. Armentrout</p>
         <p>Prestes a completar 19 anos, Poppy se prepara para sua Ascensão. Quer dizer, Poppy é preparada para sua Ascensão, já que, como tudo mais em sua vida, ela não tem opção senão Ascender. Sendo a Donzela, ela será entregue aos deuses de qualquer forma, seja lá o que isso signifique.Destinada a salvar Solis dos Atlantes, que amaldiçoaram o reino com a criação dos terríveis Vorazes, Poppy não entende o que está por vir e nem sabe se está pronta para ser entregue aos tais deuses ou, ainda, se sequer deseja fazê-lo.Privada de todas as escolhas, sendo inclusive obrigada a cobrir o rosto com um véu e impedida de conversar com qualquer pessoa além de uma dama de companhia designada pela Corte, Poppy leva uma vida solitária. Mas o que ela quer mesmo é lutar ao lado dos guardas e conseguir se proteger das criaturas que ameaçam o reino, as mesmas que mataram seus pais. Com um aliado secreto e uma habilidade rara, Poppy tem um vislumbre da vida que poderia ter se fosse livre do fardo de ser a Donzela.Mas com a entrada de Hawke Flynn em sua vida, o mundo de Poppy vira de cabeça para baixo e ela corre o risco de ser arrebatada por tudo o que sempre lhe disseram ser proibido. Lançada em uma intrincada rede de mentiras, traições e desejo, ela vê todas as suas certezas começarem a ruir. Qual será o lado certo da história? E será que há mesmo um lado certo? Em meio a tantas reviravoltas e dilemas, o futuro de Poppy está cada vez mais incerto e perigoso, e a vida de dois reinos está em suas mãos. 
  </p>
     
@@ -55,8 +72,7 @@
         <img src="{% static 'img/o-principe-cruel-capa.png' %}" alt="capa do livro o Principe cruel">
     </a>
         <div class="infoLivro">
-        <h3 style="color: rgb(212, 168, 46);">O Principe cruel</h3>
-        <p>Autor: Holly Black</p>
+<h3 style="color: rgb(212, 168, 46);">O Principe cruel <button class="btn-favorito {% if 'O Principe cruel' in titulos_favoritados %}ativo{% endif %}" data-titulo="O Principe cruel" data-autor="Holly Black">★</button></h3>        <p>Autor: Holly Black</p>
         <p> Jude tinha apenas sete anos quando seus pais foram brutalmente assasinados e ela e as irmãs levadas para viver no traiçoeiro Reino das Fadas. Dez anos depois, tudo o que Jude quer é se encaixar, mesmo sendo uma garota mortal. Mas todos os feéricos parecem desprezar os humanos... Especialmente o príncipe Cardan, o mais jovem e mais perverso dos filhos do Grande Rei de Elfhame.Para conquistar o tão desejado lugar na Corte, Jude precisa desafiar o príncipe - e enfrentar as consequências do ato.A garota passa, então, a se envolver cada vez mais nos jogos e intrigas do palácio, e acaba descobrindo a própria vocação para trapaças e derramamento de sangue. Mas quando uma traição ameaça afogar o Reindo das Fadas em violência, Jude precisará arriscar tudo em uma perigosa aliança para salvar suas irmãs - e a própria Elfhame.Cercada por mentiras e pessoas que desejam destruí-la , Jude terá que descobrir o verdadeiro significado da palavra poder antes que seja tarde demais.Com personagens únicos, reviravoltas inesperadas, e uma traição de tirar o fôlego, O príncipe cruel vai deixar o leitor querendo mergulhar de cabeça na continuação deste universo. </p>
          <a class="btnComprar" href="https://a.co/d/8TFUXuA" target="_blank">Comprar</a>
         <a class="btnComentar" href="{% url 'pagina_comentarios_fantasia' %}#o-principe-cruel" style="align-self: flex-end;  background-color: #fd675c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">Comentários</a>
@@ -65,5 +81,41 @@
 
 </div>
 </div>
+
+<script>
+    document.querySelectorAll('.btn-favorito').forEach(botao => {
+        botao.addEventListener('click', function(e) {
+            e.preventDefault();
+            const btn = this;
+            const titulo = btn.getAttribute('data-titulo');
+            const autor = btn.getAttribute('data-autor');
+
+            fetch("/favoritar-js/", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ titulo: titulo, autor: autor })
+            })
+            .then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.favoritado) {
+                    btn.classList.add('ativo');
+                } else if (data) {
+                    btn.classList.remove('ativo');
+                }
+            })
+            .catch(err => console.error("Erro ao favoritar:", err));
+        });
+    });
+</script>
+
 </body>
 </html>

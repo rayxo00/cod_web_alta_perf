@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Livro, Favorito
+from django.contrib.auth import logout
+from django.urls import reverse
 
 # View para renderizar a página inicial
 def index(request):
@@ -110,5 +112,118 @@ def login_cadastro_usuario(request):
 
 @login_required(login_url='login_usuario')
 def pagina_favoritos(request):
+    # Busca todos os favoritos do usuário logado trazidos do banco de dados
     meus_favoritos = Favorito.objects.filter(usuario=request.user)
     return render(request, 'favoritos/favoritos.html', {'favoritos': meus_favoritos})
+
+@login_required(login_url='login_usuario') 
+def pagina_conta(request):
+    return render(request, 'login/conta.html', {'usuario': request.user})
+
+def logout_usuario(request):
+    logout(request)
+    return redirect(reverse('login_usuario') + '?aba=cadastro')
+
+
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+
+@login_required(login_url='login_usuario')
+@require_POST
+def favoritar_livro_js(request):
+    import json
+    data = json.loads(request.body)
+    titulo = data.get('titulo')
+    autor = data.get('autor')
+    
+    # Busca ou cria o livro no banco usando o título de referência
+    livro, _ = Livro.objects.get_or_create(titulo=titulo, defaults={'autor': autor, 'categoria': 'distopia'})
+    
+    # Se já for favorito, remove. Se não, adiciona.
+    favorito, created = Favorito.objects.get_or_create(usuario=request.user, livro=livro)
+    if not created:
+        favorito.delete()
+        favoritado = False
+    else:
+        favoritado = True
+        
+    return JsonResponse({'favoritado': favoritado})
+
+def pagina_distopia(request):
+    livros = Livro.objects.filter(categoria='distopia')
+
+    titulos_favoritados = []
+    
+    if request.user.is_authenticated:
+        titulos_favoritados = Favorito.objects.filter(usuario=request.user).values_list('livro__titulo', flat=True)
+    
+    return render(request, 'temas/distopia.html', {
+        'livros': livros, 
+        'titulos_favoritados': titulos_favoritados
+    })
+
+def pagina_fantasia(request):
+    livros = Livro.objects.filter(categoria='fantasia')
+    
+    titulos_favoritados = []
+    
+    if request.user.is_authenticated:
+        titulos_favoritados = Favorito.objects.filter(usuario=request.user).values_list('livro__titulo', flat=True)
+    
+    return render(request, 'temas/fantasia.html', {
+        'livros': livros, 
+        'titulos_favoritados': titulos_favoritados
+    })
+
+def pagina_ficção(request):
+    livros = Livro.objects.filter(categoria='ficção')
+    
+    titulos_favoritados = []
+    
+    if request.user.is_authenticated:
+        titulos_favoritados = Favorito.objects.filter(usuario=request.user).values_list('livro__titulo', flat=True)
+    
+    return render(request, 'temas/ficção.html', {
+        'livros': livros, 
+        'titulos_favoritados': titulos_favoritados
+    })
+
+def pagina_romance(request):
+    livros = Livro.objects.filter(categoria='romance')
+    
+    titulos_favoritados = []
+    
+    if request.user.is_authenticated:
+        titulos_favoritados = Favorito.objects.filter(usuario=request.user).values_list('livro__titulo', flat=True)
+    
+    return render(request, 'temas/romance.html', {
+        'livros': livros, 
+        'titulos_favoritados': titulos_favoritados
+    })
+
+def pagina_suspense(request):
+    livros = Livro.objects.filter(categoria='suspense')
+    
+    titulos_favoritados = []
+    
+    if request.user.is_authenticated:
+        titulos_favoritados = Favorito.objects.filter(usuario=request.user).values_list('livro__titulo', flat=True)
+    
+    return render(request, 'temas/suspense.html', {
+        'livros': livros, 
+        'titulos_favoritados': titulos_favoritados
+    })
+
+def pagina_terror(request):
+    livros = Livro.objects.filter(categoria='terror')
+    
+    titulos_favoritados = []
+    
+    if request.user.is_authenticated:
+        titulos_favoritados = Favorito.objects.filter(usuario=request.user).values_list('livro__titulo', flat=True)
+    
+    return render(request, 'temas/terror.html', {
+        'livros': livros, 
+        'titulos_favoritados': titulos_favoritados
+    })
+    

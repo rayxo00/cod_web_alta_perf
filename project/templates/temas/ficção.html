@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="{% static 'romance.css' %}">
        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 
+<style>
+    .btn-favorito {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #ccc;
+        transition: color 0.2s, transform 0.1s;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+    .btn-favorito.ativo {
+        color: #ffca28;
+    }
+    .btn-favorito:active {
+        transform: scale(1.2);
+    }
+</style>
+
 </head>
 <body>
     <div id="tudo">
@@ -26,7 +45,7 @@
         <img src=" {% static 'img/duna.capa.png' %}" alt="capa do livro duna">
         </a><div class="infoLivro">
             <div></div>
-        <h3 style="color: rgb(223, 158, 38);">Duna</h3>
+        <h3 style="color: rgb(223, 158, 38);">Duna <button class="btn-favorito {% if 'Duna' in titulos_favoritados %}ativo{% endif %}" data-titulo="Duna" data-autor="Frank Herbert">★</button></h3>
         <p>Autor: Frank Herbert</p>
         <p>A vida do jovem Paul Atreides está prestes a mudar radicalmente. Após a visita de uma mulher misteriosa, ele é obrigado a deixar seu planeta natal para sobreviver ao ambiente árido e severo de Arrakis, o Planeta Deserto. Envolvido numa intrincada teia política e religiosa, Paul divide-se entre as obrigações de herdeiro e seu treinamento nas doutrinas secretas de uma antiga irmandade, que vê nele a esperança de realização de um plano urdido há séculos. Ecos de profecias ancestrais também o cercam entre os nativos de Arrakis. Seria ele o eleito que tornaria viáveis seus sonhos e planos ocultos?
         Ao lado das trilogias ‘Fundação’, de Isaac Asimov, e ‘O Senhor dos Anéis’, de J. R. R. Tolkien, ‘Duna’ é considerada uma das maiores obras de fantasia e ficção científica de todos os tempos. Um premiado best-seller já levado às telas de cinema pelas mãos do consagrado diretor David Lynch </p>
@@ -42,7 +61,7 @@
         <img src="{% static 'img/2001capa.livro.png' %}" alt="capa do 2001: Uma Odisséia no Espaço">
         </a><div class="infoLivro">
             <div></div>
-        <h3 style="color: rgb(19, 8, 49);">2001: Uma Odisséia no Espaço</h3>
+        <h3 style="color: rgb(19, 8, 49);">2001: Uma Odisséia no Espaço<button class="btn-favorito {% if '2001: Uma Odisséia no Espaço' in titulos_favoritados %}ativo{% endif %}" data-titulo="2001: Uma Odisséia no Espaço" data-autor="Arthur C. Clarke">★</button></h3>
         <p>Autor: Arthur C. Clarke</p>
         <p>Nos primórdios da humanidade, quando a fome e os predadores ameaçavam a raça humana, chega à Terra um objeto inusitado, inacessível à limitada compreensão da mente pré-histórica, mas que influencia os homens a descobrir coisas que permitem a sua própria evolução.Milhões de anos depois, a descoberta de um monólito soterrado na Lua deixa os cientistas perplexos. Para investigar esse mistério, a Terra envia ao espaço uma equipe altamente treinada e HAL 9000, uma inteligência artificial responsável pelo funcionamento da nave e pela segurança dos tripulantes. Porém, o surgimento de pequenas falhas levanta a suspeita de que há algo errado com a missão. </p>
     
@@ -57,7 +76,7 @@
         <img src="{% static 'img/eu,robo.capa.png' %}" alt="capa do livro  Eu, robô">
         </a><div class="infoLivro">
             <div></div>
-        <h3 style="color: rgb(107, 69, 39);"> Eu, robô</h3>
+        <h3 style="color: rgb(107, 69, 39);">Eu, robô<button class="btn-favorito {% if 'Eu, robô' in titulos_favoritados %}ativo{% endif %}" data-titulo="Eu, robô" data-autor="Isaac Asimov">★</button></h3>
         <p>Autor:  Isaac Asimov</p>
         <p>É uma coleção de contos interligados que explora a evolução da robótica e as complexidades éticas da inteligência artificial através das histórias da robopsicóloga Susan Calvin. As histórias, que se passam em um futuro onde os robôs são comuns, são centradas nas famosas Três Leis da Robótica, e mostram como essas leis, com suas hierarquias e possíveis conflitos, regem o comportamento dos robôs e as interações entre robôs e humanos. </p>
          <a class="btnComprar" href="https://www.amazon.com.br/Eu-Robo-Isaac-Asimov-ebook/dp/B015EED2O2" target="_blank">Comprar</a>
@@ -68,5 +87,41 @@
 
 </div>
 </div>
+
+<script>
+    document.querySelectorAll('.btn-favorito').forEach(botao => {
+        botao.addEventListener('click', function(e) {
+            e.preventDefault();
+            const btn = this;
+            const titulo = btn.getAttribute('data-titulo');
+            const autor = btn.getAttribute('data-autor');
+
+            fetch("/favoritar-js/", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ titulo: titulo, autor: autor })
+            })
+            .then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.favoritado) {
+                    btn.classList.add('ativo');
+                } else if (data) {
+                    btn.classList.remove('ativo');
+                }
+            })
+            .catch(err => console.error("Erro ao favoritar:", err));
+        });
+    });
+</script>
+
 </body>
 </html>

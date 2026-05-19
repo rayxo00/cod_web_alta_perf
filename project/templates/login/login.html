@@ -299,7 +299,7 @@
 <footer>© 2025 Dreamy Pages — Seu refúgio literário</footer>
  
 <script>
-    // Mantemos apenas a função visual para alternar o design das abas na tela
+    // Função visual para alternar o design das abas na tela
     function mostrarAba(aba) {
         document.getElementById('form-login').classList.remove('active');
         document.getElementById('form-cadastro').classList.remove('active');
@@ -309,6 +309,15 @@
         const idx = aba === 'login' ? 0 : 1;
         document.querySelectorAll('.tab-btn')[idx].classList.add('active');
     }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const abaParaAbrir = urlParams.get('aba');
+
+        if (abaParaAbrir === 'cadastro') {
+            mostrarAba('cadastro');
+        }
+    });
 </script>
 </body>
 </html>

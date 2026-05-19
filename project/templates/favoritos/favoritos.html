@@ -14,6 +14,8 @@
             <li><a href="{% url 'index' %}"><b>Home</b></a></li>
             <li><a href="{% url 'pagina_favoritos' %}"><b>Favoritos</b></a></li>
             <li><a href="{% url 'pagina_suporte' %}"><b>Suporte</b></a></li>
+            <li><a href="{% url 'pagina_conta' %}"><b>Conta</b></a></li>
+
         </ul>
     </div>
 
@@ -25,14 +27,23 @@
             <div class="secao-favoritos">
                 <h2 class="titulo-secao">Lista de Favoritos</h2>
                 
-                <div id="lista-vazia" class="mensagem-vazia">
-                    <img src="../img/iconestrela.png" alt="estrela" style="width: 80px; opacity: 0.3;">
-                    <p>Você ainda não adicionou nenhum livro aos favoritos.</p>
-                    <p class="texto-pequeno">Explore nossos <a href="../index.html">temas de livros</a> e comece sua coleção!</p>
-                </div>
-
-                <div id="grid-favoritos" class="grid-favoritos">
-                </div>
+                {% if not favoritos %}
+    <div id="lista-vazia" class="mensagem-vazia">
+        <img src="{% static 'img/iconestrela.png' %}" alt="estrela" style="width: 80px; opacity: 0.3;">
+        <p>Você ainda não adicionou nenhum livro aos favoritos.</p>
+        <p class="texto-pequeno">Explore nossos <a href="{% url 'index' %}">temas de livros</a> e comece sua coleção!</p>
+    </div>
+{% else %}
+    <div id="grid-favoritos" class="grid-favoritos" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 0;">
+        {% for fav in favoritos %}
+            <div class="card-favorito" style="background: #fff1f8; border: 2px solid #b11628; border-radius: 6px; padding: 15px; min-width: 200px; text-align: center;">
+                <h3 style="color: #b11628; font-size: 18px; margin-bottom: 5px;">{{ fav.livro.titulo }}</h3>
+                <p style="color: #5c0c15; font-size: 14px;">Autor: {{ fav.livro.autor }}</p>
+                <span style="color: #ffca28; font-size: 20px;">★ Favoritado</span>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
             </div>
 
             <div class="caixa-dica">
