@@ -228,7 +228,7 @@ def pagina_comentarios_distopia(request):
 
             if texto and livro_nome:
                 Comentario.objects.create(
-                    livro_slug=livro_nome,
+                    livro=livro_nome,
                     usuario=request.user,
                     texto=texto
                 )
@@ -237,9 +237,9 @@ def pagina_comentarios_distopia(request):
     todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
 
     contexto = {
-        'comentarios_jogos': todos_comentarios.filter(livro_slug='jogos-vorazes'),
-        'comentarios_estilhaca': todos_comentarios.filter(livro_slug='estilhaca-me'),
-        'comentarios_divergente': todos_comentarios.filter(livro_slug='divergente'),
+        'comentarios_jogos': todos_comentarios.filter(livro='jogos-vorazes'),
+        'comentarios_estilhaca': todos_comentarios.filter(livro='estilhaca-me'),
+        'comentarios_divergente': todos_comentarios.filter(livro='divergente'),
     }
 
     return render(request, 'comentarios/comentDistopia.html', contexto)
@@ -253,7 +253,7 @@ def pagina_comentarios_fantasia(request):
 
             if texto and livro_nome:
                 Comentario.objects.create(
-                    livro_slug=livro_nome,
+                    livro=livro_nome,
                     usuario=request.user,
                     texto=texto
                 )
@@ -262,9 +262,9 @@ def pagina_comentarios_fantasia(request):
     todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
 
     contexto = {
-        'comentarios_rainha': todos_comentarios.filter(livro_slug='a-rainha-vermelha'),
-        'comentarios_sangue': todos_comentarios.filter(livro_slug='de-sangue-e-cinzas'),
-        'comentarios_principe': todos_comentarios.filter(livro_slug='o-principe-cruel'),
+        'comentarios_rainha': todos_comentarios.filter(livro='a-rainha-vermelha'),
+        'comentarios_sangue': todos_comentarios.filter(livro='de-sangue-e-cinzas'),
+        'comentarios_principe': todos_comentarios.filter(livro='o-principe-cruel'),
     }
 
     return render(request, 'comentarios/comentFantasia.html', contexto)
@@ -279,7 +279,7 @@ def pagina_comentarios_ficção(request):
 
             if texto and livro_nome:
                 Comentario.objects.create(
-                    livro_slug=livro_nome,
+                    livro=livro_nome,
                     usuario=request.user,
                     texto=texto
                 )
@@ -288,9 +288,9 @@ def pagina_comentarios_ficção(request):
     todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
 
     contexto = {
-        'comentarios_duna': todos_comentarios.filter(livro_slug='duna'),
-        'comentarios_2001': todos_comentarios.filter(livro_slug='2001-uma-odisseia-no-espaco'),
-        'comentarios_robo': todos_comentarios.filter(livro_slug='eu-robo'),
+        'comentarios_duna': todos_comentarios.filter(livro='duna'),
+        'comentarios_2001': todos_comentarios.filter(livro='2001-uma-odisseia-no-espaco'),
+        'comentarios_robo': todos_comentarios.filter(livro='eu-robo'),
     }
 
     return render(request, 'comentarios/comentFicção.html', contexto)
@@ -305,7 +305,7 @@ def pagina_comentarios_romance(request):
 
             if texto and livro_nome:
                 Comentario.objects.create(
-                    livro_slug=livro_nome,
+                    livro=livro_nome,
                     usuario=request.user,
                     texto=texto
                 )
@@ -314,9 +314,9 @@ def pagina_comentarios_romance(request):
     todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
 
     contexto = {
-        'comentarios_teoricamente': todos_comentarios.filter(livro_slug='amor-teoricamente'),
-        'comentarios_hipotese': todos_comentarios.filter(livro_slug='hipotese-do-amor'),
-        'comentarios_acordo': todos_comentarios.filter(livro_slug='o-acordo'),
+        'comentarios_teoricamente': todos_comentarios.filter(livro='amor-teoricamente'),
+        'comentarios_hipotese': todos_comentarios.filter(livro='hipotese-do-amor'),
+        'comentarios_acordo': todos_comentarios.filter(livro='o-acordo'),
     }
 
     return render(request, 'comentarios/comentRomance.html', contexto)
@@ -331,7 +331,7 @@ def pagina_comentarios_suspense(request):
 
             if texto and livro_nome:
                 Comentario.objects.create(
-                    livro_slug=livro_nome,
+                    livro=livro_nome,
                     usuario=request.user,
                     texto=texto
                 )
@@ -340,9 +340,9 @@ def pagina_comentarios_suspense(request):
     todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
 
     contexto = {
-        'comentarios_verity': todos_comentarios.filter(livro_slug='verity'),
-        'comentarios_misery': todos_comentarios.filter(livro_slug='misery'),
-        'comentarios_sobrou_nenhum': todos_comentarios.filter(livro_slug='e-nao-sobrou-nenhum'),
+        'comentarios_verity': todos_comentarios.filter(livro='verity'),
+        'comentarios_misery': todos_comentarios.filter(livro='misery'),
+        'comentarios_sobrou_nenhum': todos_comentarios.filter(livro='e-nao-sobrou-nenhum'),
     }
 
     return render(request, 'comentarios/comentSuspense.html', contexto)
@@ -357,7 +357,7 @@ def pagina_comentarios_terror(request):
 
             if texto and livro_nome:
                 Comentario.objects.create(
-                    livro_slug=livro_nome,
+                    livro=livro_nome,
                     usuario=request.user,
                     texto=texto
                 )
@@ -366,9 +366,9 @@ def pagina_comentarios_terror(request):
     todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
 
     contexto = {
-        'comentarios_it': todos_comentarios.filter(livro_slug='it-acoisa'),
-        'comentarios_dracula': todos_comentarios.filter(livro_slug='dracula'),
-        'comentarios_exorcista': todos_comentarios.filter(livro_slug='o-exorcista'),
+        'comentarios_it': todos_comentarios.filter(livro='it-acoisa'),
+        'comentarios_dracula': todos_comentarios.filter(livro='dracula'),
+        'comentarios_exorcista': todos_comentarios.filter(livro='o-exorcista'),
     }
 
     return render(request, 'comentarios/comentTerror.html', contexto)
