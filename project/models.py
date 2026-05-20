@@ -25,3 +25,12 @@ class Favorito(models.Model):
 
     def __str__(self):
         return f"{self.usuario.username} favoritou {self.livro.titulo}"
+
+class Comentario(models.Model):
+    livro = models.CharField(max_length=100)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    texto = models.TextField()
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.livro}"

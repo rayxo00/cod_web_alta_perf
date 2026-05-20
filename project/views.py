@@ -3,11 +3,10 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Livro, Favorito
+from .models import Livro, Favorito, Comentario
 from django.contrib.auth import logout
 from django.urls import reverse
 
-# View para renderizar a página inicial
 def index(request):
     return render(request, 'index.html')
 
@@ -53,12 +52,10 @@ def pagina_comentarios_suspense(request):
 def pagina_comentarios_terror(request):
     return render(request, 'comentarios/comentTerror.html')
 
-# View para renderizar a página de distopia
 def pagina_distopia(request):
     livros = Livro.objects.filter(categoria='distopia')
     return render(request, 'temas/distopia.html', {'livros': livros})
 
-# View para favoritar
 @login_required(login_url='login_usuario')
 def favoritar_livro(request, livro_id):
     if request.method == 'POST':
@@ -66,10 +63,8 @@ def favoritar_livro(request, livro_id):
         Favorito.objects.get_or_create(usuario=request.user, livro=livro)
         return redirect('pagina_favoritos')
     
-    # Se alguém tentar aceder a esta URL por GET diretamente, volta para as distopias
     return redirect('pagina_distopia')
 
-# View combinada de Login e Cadastro
 def login_cadastro_usuario(request):
     if request.method == 'POST':
         action = request.POST.get('action')
@@ -102,8 +97,6 @@ def login_cadastro_usuario(request):
             if usuario is not None:
                 login(request, usuario)
                 
-                # CORRIGIDO: Evita o erro 405 encaminhando o utilizador diretamente 
-                # para a página inicial (ou favoritos) de forma limpa.
                 return redirect('index')
             else:
                 messages.error(request, 'E-mail ou senha incorretos.')
@@ -112,7 +105,6 @@ def login_cadastro_usuario(request):
 
 @login_required(login_url='login_usuario')
 def pagina_favoritos(request):
-    # Busca todos os favoritos do usuário logado trazidos do banco de dados
     meus_favoritos = Favorito.objects.filter(usuario=request.user)
     return render(request, 'favoritos/favoritos.html', {'favoritos': meus_favoritos})
 
@@ -136,10 +128,8 @@ def favoritar_livro_js(request):
     titulo = data.get('titulo')
     autor = data.get('autor')
     
-    # Busca ou cria o livro no banco usando o título de referência
     livro, _ = Livro.objects.get_or_create(titulo=titulo, defaults={'autor': autor, 'categoria': 'distopia'})
     
-    # Se já for favorito, remove. Se não, adiciona.
     favorito, created = Favorito.objects.get_or_create(usuario=request.user, livro=livro)
     if not created:
         favorito.delete()
@@ -226,4 +216,178 @@ def pagina_terror(request):
         'livros': livros, 
         'titulos_favoritados': titulos_favoritados
     })
+    
+
+
+def pagina_comentarios_distopia(request):
+    
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            texto = request.POST.get('mensagem')
+            livro_nome = request.POST.get('livro_nome') 
+
+            if texto and livro_nome:
+                Comentario.objects.create(
+                    livro_slug=livro_nome,
+                    usuario=request.user,
+                    texto=texto
+                )
+        return redirect('pagina_comentarios_distopia')
+
+    todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
+
+    contexto = {
+        'comentarios_jogos': todos_comentarios.filter(livro_slug='jogos-vorazes'),
+        'comentarios_estilhaca': todos_comentarios.filter(livro_slug='estilhaca-me'),
+        'comentarios_divergente': todos_comentarios.filter(livro_slug='divergente'),
+    }
+
+    return render(request, 'comentarios/comentDistopia.html', contexto)
+
+def pagina_comentarios_fantasia(request):
+    
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            texto = request.POST.get('mensagem')
+            livro_nome = request.POST.get('livro_nome') 
+
+            if texto and livro_nome:
+                Comentario.objects.create(
+                    livro_slug=livro_nome,
+                    usuario=request.user,
+                    texto=texto
+                )
+        return redirect('pagina_comentarios_fantasia')
+
+    todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
+
+    contexto = {
+        'comentarios_rainha': todos_comentarios.filter(livro_slug='a-rainha-vermelha'),
+        'comentarios_sangue': todos_comentarios.filter(livro_slug='de-sangue-e-cinzas'),
+        'comentarios_principe': todos_comentarios.filter(livro_slug='o-principe-cruel'),
+    }
+
+    return render(request, 'comentarios/comentFantasia.html', contexto)
+
+
+def pagina_comentarios_ficção(request):
+    
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            texto = request.POST.get('mensagem')
+            livro_nome = request.POST.get('livro_nome') 
+
+            if texto and livro_nome:
+                Comentario.objects.create(
+                    livro_slug=livro_nome,
+                    usuario=request.user,
+                    texto=texto
+                )
+        return redirect('pagina_comentarios_ficção')
+
+    todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
+
+    contexto = {
+        'comentarios_duna': todos_comentarios.filter(livro_slug='duna'),
+        'comentarios_2001': todos_comentarios.filter(livro_slug='2001-uma-odisseia-no-espaco'),
+        'comentarios_robo': todos_comentarios.filter(livro_slug='eu-robo'),
+    }
+
+    return render(request, 'comentarios/comentFicção.html', contexto)
+
+
+def pagina_comentarios_romance(request):
+    
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            texto = request.POST.get('mensagem')
+            livro_nome = request.POST.get('livro_nome') 
+
+            if texto and livro_nome:
+                Comentario.objects.create(
+                    livro_slug=livro_nome,
+                    usuario=request.user,
+                    texto=texto
+                )
+        return redirect('pagina_comentarios_romance')
+
+    todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
+
+    contexto = {
+        'comentarios_teoricamente': todos_comentarios.filter(livro_slug='amor-teoricamente'),
+        'comentarios_hipotese': todos_comentarios.filter(livro_slug='hipotese-do-amor'),
+        'comentarios_acordo': todos_comentarios.filter(livro_slug='o-acordo'),
+    }
+
+    return render(request, 'comentarios/comentRomance.html', contexto)
+
+
+def pagina_comentarios_suspense(request):
+    
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            texto = request.POST.get('mensagem')
+            livro_nome = request.POST.get('livro_nome') 
+
+            if texto and livro_nome:
+                Comentario.objects.create(
+                    livro_slug=livro_nome,
+                    usuario=request.user,
+                    texto=texto
+                )
+        return redirect('pagina_comentarios_suspense')
+
+    todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
+
+    contexto = {
+        'comentarios_verity': todos_comentarios.filter(livro_slug='verity'),
+        'comentarios_misery': todos_comentarios.filter(livro_slug='misery'),
+        'comentarios_sobrou_nenhum': todos_comentarios.filter(livro_slug='e-nao-sobrou-nenhum'),
+    }
+
+    return render(request, 'comentarios/comentSuspense.html', contexto)
+
+
+def pagina_comentarios_terror(request):
+    
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            texto = request.POST.get('mensagem')
+            livro_nome = request.POST.get('livro_nome') 
+
+            if texto and livro_nome:
+                Comentario.objects.create(
+                    livro_slug=livro_nome,
+                    usuario=request.user,
+                    texto=texto
+                )
+        return redirect('pagina_comentarios_terror')
+
+    todos_comentarios = Comentario.objects.all().order_by('-data_criacao')
+
+    contexto = {
+        'comentarios_it': todos_comentarios.filter(livro_slug='it-acoisa'),
+        'comentarios_dracula': todos_comentarios.filter(livro_slug='dracula'),
+        'comentarios_exorcista': todos_comentarios.filter(livro_slug='o-exorcista'),
+    }
+
+    return render(request, 'comentarios/comentTerror.html', contexto)
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     

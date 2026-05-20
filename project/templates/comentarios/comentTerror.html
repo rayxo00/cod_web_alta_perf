@@ -1,220 +1,166 @@
-{% load static %} <!DOCTYPE html>
+{% load static %} 
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comentários - Terror</title>
     <link rel="stylesheet" href="{% static 'comentRomance.css' %}">
-       <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
-
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 </head>
 <body>
     
+    <div id="it-acoisa">
+      <section id="content">
+        <article class="post">
+          <h2>Discussão: It a coisa</h2>
 
-  
-   <div id="it-acoisa">
-  <section id="content">
-    
-    <article class="post">
-      <h2>Discussão: It a coisa</h2>
+          <div class="livro-box">
+              <img src="{% static 'img/it-acoisa.png' %}" alt="it a coisa capa" class="livro-img">
+              <div class="livro-texto">
+                  <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
+                  <p>Bem-vindos à página de comentários e discussões do livro <em>It a coisa</em>. Aqui você pode ler opiniões de exemplo, comentar e compartilhar suas impressões.</p>
+                  <h3>Resumo rápido (demo)</h3>
+                  <p><em>IT a coisa</em> Um grupo de amigos enfrenta uma criatura maligna que assume a forma do palhaço Pennywise e aterroriza a cidade de Derry...</p>
+              </div>
+          </div>
 
-      <div class="livro-box">
-      <img src="{% static 'img/it-acoisa.png' %}" alt="it a coisa capa" class="livro-img">
+          <h3>Comentários recentes</h3>
 
-      <div  class="livro-texto">
-      <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
-      <p>
-        Bem-vindos à página de comentários e discussões do livro <em>It a coisa</em>.
-        Aqui você pode ler opiniões de exemplo, comentar e compartilhar suas impressões.
-      </p>
+          {% for coment in comentarios_it %}
+              <div class="comment">
+                <p><strong>{% firstof coment.usuario.first_name coment.usuario.username %}</strong> — {{ coment.data_criacao|date:"d/m/Y" }}</p>
+                <p>“{{ coment.texto }}”</p>
+              </div>
+          {% empty %}
+              <div class="comment">
+                <p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+              </div>
+          {% endfor %}
 
-      <h3>Resumo rápido (demo)</h3>
-      <p>
-        <em>IT a coisa</em> Um grupo de amigos enfrenta uma criatura maligna que assume a forma do palhaço Pennywise e aterroriza a cidade de Derry. Anos depois, já adultos, eles retornam para derrotá-la de vez. A história fala sobre medo, amizade e coragem.
-      </p>
-</div>
-</div>
-      <h3>Comentários recentes</h3>
+          <h3>Enviar um comentário</h3>
+          {% if user.is_authenticated %}
+              <form action="{% url 'pagina_comentarios_terror' %}" method="post" class="comment-form">
+                {% csrf_token %}
+                <input type="hidden" name="livro_nome" value="it-acoisa">
 
-      
-      <div class="comment">
-        <p><strong>Carla </strong> — 25/10/2025</p>
-        <p>
-         Li “It – A Coisa” à noite e me arrependi! O clima de suspense e a descrição das aparições são de arrepiar. Mas além do medo, o livro traz reflexões sobre crescer, enfrentar o passado e o poder da união. Um clássico do terror moderno que todo fã do gênero deveria ler.
-        </p>
-      </div>
+                <p style="color: #7a0a19; margin-bottom: 10px;">Comentando como: <strong>{% firstof user.first_name user.username %}</strong></p>
 
-      <div class="comment">
-        <p><strong>Pedro</strong> — 03/09/2025</p>
-        <p>
-          O que mais me impressionou em "It" é a profundidade psicológica dos personagens. Pennywise é assustador, mas o verdadeiro terror está nas pessoas e nos traumas que carregam. King realmente entende a mente humana. Só achei que algumas partes poderiam ser um pouco mais curtas.
-        </p>
-      </div>
+                <label for="mensagem">Comentário</label><br />
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui" required></textarea><br />
 
-      <div class="comment">
-        <p><strong>Maria</strong> — 01/10/2025</p>
-        <p>
-         "It – A Coisa" é uma das obras mais intensas que já li. A forma como Stephen King mistura terror sobrenatural com os medos reais da infância é brilhante. A amizade do Clube dos Otários me emocionou tanto quanto as cenas de terror me deixaram apavorada. É um livro longo, mas vale cada página
-        </p>
-      </div>
-
-      <h3>Enviar um comentário (modelo estático)</h3>
-      <p>
-        (Formulário de exemplo — sem processamento)
-      </p>
-      <form action="#" method="post" class="comment-form">
-        <label for="nome">Nome</label><br />
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" /><br />
-
-        <label for="email">Email</label><br />
-        <input type="text" id="email" name="email" placeholder="seu@email.com" /><br />
-
-        <label for="mensagem">Comentário</label><br />
-        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui"></textarea><br />
-
-        <button type="submit">Enviar comentário</button>
-      </form>
-    </article>
-  </section>
-</section>
-</div>
+                <button type="submit">Enviar comentário</button>
+              </form>
+          {% else %}
+              <div class="comment">
+                <p>Você precisa estar conectado para comentar. <a href="{% url 'pagina_conta' %}?aba=login" style="color: #b11628; font-weight: bold;">Fazer Login</a></p>
+              </div>
+          {% endif %}
+        </article>
+      </section>
+    </div>
 
 
-<div id="Dracula">
-  <section id="content">
-    
-    <article class="post">
-      <h2>Discussão: Drácula</h2>
+    <div id="Dracula">
+      <section id="content">
+        <article class="post">
+          <h2>Discussão: Drácula</h2>
 
-      <div class="livro-box">
-        <img src="{% static 'img/drácula-livro.png' %}" alt="Drácula capa" class="livro-img">
-      
-        <div class="livro-texto">
-      <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
+          <div class="livro-box">
+              <img src="{% static 'img/drácula-livro.png' %}" alt="Drácula capa" class="livro-img">
+              <div class="livro-texto">
+                  <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
+                  <p>Bem-vindos à página de comentários e discussões do livro <em>Drácula</em>...</p>
+                  <h3>Resumo rápido (demo)</h3>
+                  <p><em>Drácula</em> O advogado Jonathan Harker viaja à Transilvânia para ajudar o misterioso Conde Drácula...</p>
+              </div>
+          </div>
 
-      <p>
-        Bem-vindos à página de comentários e discussões do livro <em>Drácula</em>.
-        Aqui você pode ler opiniões de exemplo, comentar e compartilhar suas impressões.
-      </p>
+          <h3>Comentários recentes</h3>
 
-      <h3>Resumo rápido (demo)</h3>
-      <p>
-        <em>Drácula</em> O advogado Jonathan Harker viaja à Transilvânia para ajudar o misterioso Conde Drácula com negócios na Inglaterra, mas logo descobre que o conde é um vampiro. Drácula parte para Londres, espalhando terror e doenças, e um grupo liderado por Van Helsing precisa unir forças para detê-lo.
-        É uma história de horror, mistério e luta entre o bem e o mal, que deu origem à lenda moderna dos vampiros.
-      </p>
-</div>
-</div>
-      <h3>Comentários recentes</h3>
+          {% for coment in comentarios_dracula %}
+              <div class="comment">
+                <p><strong>{% firstof coment.usuario.first_name coment.usuario.username %}</strong> — {{ coment.data_criacao|date:"d/m/Y" }}</p>
+                <p>“{{ coment.texto }}”</p>
+              </div>
+          {% empty %}
+              <div class="comment">
+                <p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+              </div>
+          {% endfor %}
 
-      
-      <div class="comment">
-        <p><strong>Lucas</strong> — 10/03/2025</p>
-        <p>
-            Um clássico indispensável! "Drácula" tem uma atmosfera gótica incrível e uma narrativa cheia de suspense. Gostei de como o medo é construído aos poucos, sem precisar de sustos baratos. É fascinante ver como Stoker criou o vampiro mais famoso da literatura.
-        </p>
-      </div>
+          <h3>Enviar um comentário</h3>
+          {% if user.is_authenticated %}
+              <form action="{% url 'pagina_comentarios_terror' %}" method="post" class="comment-form">
+                {% csrf_token %}
+                <input type="hidden" name="livro_nome" value="dracula">
 
-      <div class="comment">
-        <p><strong>Beatriz</strong> — 05/08/2025</p>
-        <p>
-           O livro é denso, mas envolvente. Adorei o formato em cartas e diários, que deixa a história mais realista. Mina Harker é uma personagem muito forte para a época, e o Conde Drácula é assustador e misterioso na medida certa.
-        </p>
-      </div>
+                <p style="color: #7a0a19; margin-bottom: 10px;">Comentando como: <strong>{% firstof user.first_name user.username %}</strong></p>
 
-      <div class="comment">
-        <p><strong>João</strong> — 01/11/2025</p>
-        <p>
-            Ler "Drácula" foi como viajar no tempo. A escrita é elegante e o clima sombrio prende do início ao fim. É interessante como o terror vem mais da tensão psicológica do que da violência. Entendi por que é um marco da literatura de terror.
-        </p>
-      </div>
+                <label for="mensagem">Comentário</label><br />
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui" required></textarea><br />
 
-      <h3>Enviar um comentário (modelo estático)</h3>
-      <p>
-        (Formulário de exemplo — sem processamento)
-      </p>
-      <form action="#" method="post" class="comment-form">
-        <label for="nome">Nome</label><br />
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" /><br />
+                <button type="submit">Enviar comentário</button>
+              </form>
+          {% else %}
+              <div class="comment">
+                <p>Você precisa estar conectado para comentar. <a href="{% url 'pagina_conta' %}?aba=login" style="color: #b11628; font-weight: bold;">Fazer Login</a></p>
+              </div>
+          {% endif %}
+        </article>
+      </section>
+    </div>
 
-        <label for="email">Email</label><br />
-        <input type="text" id="email" name="email" placeholder="seu@email.com" /><br />
 
-        <label for="mensagem">Comentário</label><br />
-        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui"></textarea><br />
+    <div id="o-exorcista">
+      <section id="content">
+        <article class="post">
+          <h2>Discussão: O exorcista</h2>
 
-        <button type="submit">Enviar comentário</button>
-      </form>
-    </article>
-  </section>
-</section>
-</div>
+          <div class="livro-box">
+              <img src="{% static 'img/oexorcista-capa.png' %}" alt="o exorcista capa" class="livro-img">
+              <div class="livro-texto">
+                  <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
+                  <p>Bem-vindos à página de comentários e discussões do livro <em>O exorcista</em>...</p>
+                  <h3>Resumo rápido (demo)</h3>
+                  <p><em>O exorcista</em> A jovem Regan MacNeil começa a apresentar comportamentos estranhos e violentos...</p>
+              </div>
+          </div>
 
-<div id="o-exorcista">
-  <section id="content">
-    
-    <article class="post">
-      <h2>Discussão: O exorcista</h2>
+          <h3>Comentários recentes</h3>
 
-      <div class="livro-box">
-        <img src="{% static 'img/oexorcista-capa.png' %}" alt="o exorcista capa" class="livro-img">
-      
-        <div class="livro-texto">
-      <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
+          {% for coment in comentarios_exorcista %}
+              <div class="comment">
+                <p><strong>{% firstof coment.usuario.first_name coment.usuario.username %}</strong> — {{ coment.data_criacao|date:"d/m/Y" }}</p>
+                <p>“{{ coment.texto }}”</p>
+              </div>
+          {% empty %}
+              <div class="comment">
+                <p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+              </div>
+          {% endfor %}
 
-      <p>
-        Bem-vindos à página de comentários e discussões do livro <em>O exorcista</em>.
-        Aqui você pode ler opiniões de exemplo, comentar e compartilhar suas impressões.
-      </p>
+          <h3>Enviar um comentário</h3>
+          {% if user.is_authenticated %}
+              <form action="{% url 'pagina_comentarios_terror' %}" method="post" class="comment-form">
+                {% csrf_token %}
+                <input type="hidden" name="livro_nome" value="o-exorcista">
 
-      <h3>Resumo rápido (demo)</h3>
-      <p>
-        <em>O exorcista</em> A jovem Regan MacNeil começa a apresentar comportamentos estranhos e violentos, e sua mãe busca ajuda médica e espiritual. Quando tudo falha, o padre Damien Karras e o experiente padre Merrin são chamados para realizar um exorcismo.
-      </p>
-</div>
-</div>
-      <h3>Comentários recentes</h3>
+                <p style="color: #7a0a19; margin-bottom: 10px;">Comentando como: <strong>{% firstof user.first_name user.username %}</strong></p>
 
-      
-      <div class="comment">
-        <p><strong>Ana Luiza</strong> — 14/06/2025</p>
-        <p>
-            Poucos livros me deixaram tão tensa quanto “O Exorcista”. A transformação da menina Regan é assustadora e ao mesmo tempo triste. O autor consegue misturar terror sobrenatural com uma reflexão profunda sobre fé, culpa e o poder do mal. Um clássico que realmente dá medo!
-        </p>
-      </div>
+                <label for="mensagem">Comentário</label><br />
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui" required></textarea><br />
 
-      <div class="comment">
-        <p><strong>Felipe</strong> — 02/07/2025</p>
-        <p>
-           Li “O Exorcista” achando que seria só um livro de terror, mas é muito mais do que isso. A escrita é envolvente, e o drama dos personagens é intenso. As descrições das possessões são fortes, mas o que mais me prendeu foi o conflito espiritual dos padres. Impressionante.
-        </p>
-      </div>
+                <button type="submit">Enviar comentário</button>
+              </form>
+          {% else %}
+              <div class="comment">
+                <p>Você precisa estar conectado para comentar. <a href="{% url 'pagina_conta' %}?aba=login" style="color: #b11628; font-weight: bold;">Fazer Login</a></p>
+              </div>
+          {% endif %}
+        </article>
+      </section>
+    </div>
 
-      <div class="comment">
-        <p><strong>Camila</strong> — 19/08/2025</p>
-        <p>
-         Um livro perturbador e inesquecível. O clima sombrio, o suspense e a luta entre o bem e o mal são muito bem construídos. Mesmo conhecendo o filme, a leitura me surpreendeu e me deixou arrepiada do começo ao fim.      
-          </p>
-      </div>
-
-      <h3>Enviar um comentário (modelo estático)</h3>
-      <p>
-        (Formulário de exemplo — sem processamento)
-      </p>
-      <form action="#" method="post" class="comment-form">
-        <label for="nome">Nome</label><br />
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" /><br />
-
-        <label for="email">Email</label><br />
-        <input type="text" id="email" name="email" placeholder="seu@email.com" /><br />
-
-        <label for="mensagem">Comentário</label><br />
-        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui"></textarea><br />
-
-        <button type="submit">Enviar comentário</button>
-      </form>
-    </article>
-  </section>
-</section>
-</div>
 </body>
 </html>

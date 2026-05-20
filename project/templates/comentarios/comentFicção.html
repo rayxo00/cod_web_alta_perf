@@ -1,221 +1,166 @@
-{% load static %} <!DOCTYPE html>
+{% load static %} 
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comentários - Ficção</title>
     <link rel="stylesheet" href="{% static 'comentRomance.css' %}">
-       <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
-
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pixelify Sans'>
 </head>
 <body>
     
+    <div id="duna">
+      <section id="content">
+        <article class="post">
+          <h2>Discussão: Duna</h2>
 
-  
-   <div id="duna">
-  <section id="content">
-    
-    <article class="post">
-      <h2>Discussão: Duna</h2>
+          <div class="livro-box">
+              <img src="{% static 'img/duna.capa.png' %}" alt="duna capa" class="livro-img">
+              <div class="livro-texto">
+                  <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
+                  <p>Bem-vindos à página de comentários e discussões do livro <em>Duna</em>. Aqui você pode ler opiniões de exemplo, comentar e compartilhar suas impressões.</p>
+                  <h3>Resumo rápido (demo)</h3>
+                  <p><em>Duna</em> Em um futuro distante, o jovem Paul Atreides e sua família assumem o controle do planeta Arrakis...</p>
+              </div>
+          </div>
 
-      <div class="livro-box">
-      <img src="{% static 'img/duna.capa.png' %}" alt="duna capa" class="livro-img">
+          <h3>Comentários recentes</h3>
 
-      <div  class="livro-texto">
-      <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
-      <p>
-        Bem-vindos à página de comentários e discussões do livro <em>Duna</em>.
-        Aqui você pode ler opiniões de exemplo, comentar e compartilhar suas impressões.
-      </p>
+          {% for coment in comentarios_duna %}
+              <div class="comment">
+                <p><strong>{% firstof coment.usuario.first_name coment.usuario.username %}</strong> — {{ coment.data_criacao|date:"d/m/Y" }}</p>
+                <p>“{{ coment.texto }}”</p>
+              </div>
+          {% empty %}
+              <div class="comment">
+                <p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+              </div>
+          {% endfor %}
 
-      <h3>Resumo rápido (demo)</h3>
-      <p>
-        <em>Duna</em> Em um futuro distante, o jovem Paul Atreides e sua família assumem o controle do planeta Arrakis, o único lugar onde existe a melange, uma substância valiosa que garante poder e longevidade.
-        Traições políticas e guerras se iniciam pelo domínio do planeta, e Paul descobre um destino maior do que imaginava.
-      </p>
-</div>
-</div>
-      <h3>Comentários recentes</h3>
+          <h3>Enviar um comentário</h3>
+          {% if user.is_authenticated %}
+              <form action="{% url 'pagina_comentarios_ficção' %}" method="post" class="comment-form">
+                {% csrf_token %}
+                <input type="hidden" name="livro_nome" value="duna">
 
-      
-      <div class="comment">
-        <p><strong>Rafael</strong> — 04/01/2025</p>
-        <p>
-          “Duna” é simplesmente uma obra-prima da ficção científica. O universo criado por Frank Herbert é riquíssimo, cheio de política, religião e ecologia. Paul Atreides é um protagonista fascinante, e o planeta Arrakis é quase um personagem próprio. Um livro complexo, mas recompensador.
-        </p>
-      </div>
+                <p style="color: #7a0a19; margin-bottom: 10px;">Comentando como: <strong>{% firstof user.first_name user.username %}</strong></p>
 
-      <div class="comment">
-        <p><strong>Júlia</strong> — 03/02/2025</p>
-        <p>
-       No começo achei a leitura um pouco densa, mas depois fiquei completamente envolvida. “Duna” é muito mais do que uma história de ficção científica — é uma reflexão sobre poder, destino e sobrevivência. Um clássico que merece ser lido com calma.
-        </p>
-      </div>
+                <label for="mensagem">Comentário</label><br />
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui" required></textarea><br />
 
-      <div class="comment">
-        <p><strong>Tiago</strong> — 01/05/2025</p>
-        <p>
-          A ambientação de “Duna” é impressionante. Os detalhes sobre o deserto, as especiarias e a cultura dos Fremen criam um mundo totalmente vivo. É uma história épica, cheia de intrigas e batalhas, mas também com uma mensagem profunda sobre controle e equilíbrio.
-        </p>
-      </div>
-
-      <h3>Enviar um comentário (modelo estático)</h3>
-      <p>
-        (Formulário de exemplo — sem processamento)
-      </p>
-      <form action="#" method="post" class="comment-form">
-        <label for="nome">Nome</label><br />
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" /><br />
-
-        <label for="email">Email</label><br />
-        <input type="text" id="email" name="email" placeholder="seu@email.com" /><br />
-
-        <label for="mensagem">Comentário</label><br />
-        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui"></textarea><br />
-
-        <button type="submit">Enviar comentário</button>
-      </form>
-    </article>
-  </section>
-</section>
-</div>
+                <button type="submit">Enviar comentário</button>
+              </form>
+          {% else %}
+              <div class="comment">
+                <p>Você precisa estar conectado para comentar. <a href="{% url 'pagina_conta' %}?aba=login" style="color: #b11628; font-weight: bold;">Fazer Login</a></p>
+              </div>
+          {% endif %}
+        </article>
+      </section>
+    </div>
 
 
-<div id="2001">
-  <section id="content">
-    
-    <article class="post">
-      <h2>Discussão: 2001: Uma Odisséia no Espaço</h2>
+    <div id="2001">
+      <section id="content">
+        <article class="post">
+          <h2>Discussão: 2001: Uma Odisséia no Espaço</h2>
 
-      <div class="livro-box">
-        <img src="{% static 'img/2001capa.livro.png' %}" alt="2001: Uma Odisséia no Espaço capa" class="livro-img">
-      
-        <div class="livro-texto">
-      <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
+          <div class="livro-box">
+              <img src="{% static 'img/2001capa.livro.png' %}" alt="2001: Uma Odisséia no Espaço capa" class="livro-img">
+              <div class="livro-texto">
+                  <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
+                  <p>Bem-vindos à página de comentários e discussões do livro <em>2001: Uma Odisséia no Espaço</em>...</p>
+                  <h3>Resumo rápido (demo)</h3>
+                  <p><em>2001: Uma Odisséia no Espaço</em> Durante uma missão espacial rumo a Júpiter...</p>
+              </div>
+          </div>
 
-      <p>
-        Bem-vindos à página de comentários e discussões do livro <em>2001: Uma Odisséia no Espaço</em>.
-        Aqui você pode ler opiniões de exemplo, comentar e compartilhar suas impressões.
-      </p>
+          <h3>Comentários recentes</h3>
 
-      <h3>Resumo rápido (demo)</h3>
-      <p>
-        <em>2001: Uma Odisséia no Espaço</em> Durante uma missão espacial rumo a Júpiter, a tripulação da nave Discovery One enfrenta um conflito mortal com o supercomputador HAL 9000, que começa a agir de forma misteriosa.
-        Paralelamente, a descoberta de um monólito alienígena sugere que uma força superior influenciou a evolução humana.
-      </p>
-</div>
-</div>
-      <h3>Comentários recentes</h3>
+          {% for coment in comentarios_2001 %}
+              <div class="comment">
+                <p><strong>{% firstof coment.usuario.first_name coment.usuario.username %}</strong> — {{ coment.data_criacao|date:"d/m/Y" }}</p>
+                <p>“{{ coment.texto }}”</p>
+              </div>
+          {% empty %}
+              <div class="comment">
+                <p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+              </div>
+          {% endfor %}
 
-      
-      <div class="comment">
-        <p><strong>Carolina</strong> — 04/09/2025</p>
-        <p>
-          “2001: Uma Odisseia no Espaço” é uma leitura fascinante e filosófica. O livro vai muito além da ficção científica — fala sobre evolução, inteligência e o futuro da humanidade. Clarke escreve de um jeito que faz você se sentir realmente viajando pelo cosmos..
-        </p>
-      </div>
+          <h3>Enviar um comentário</h3>
+          {% if user.is_authenticated %}
+              <form action="{% url 'pagina_comentarios_ficção' %}" method="post" class="comment-form">
+                {% csrf_token %}
+                <input type="hidden" name="livro_nome" value="2001-uma-odisseia-no-espaco">
 
-      <div class="comment">
-        <p><strong>André Silva</strong> — 03/02/2025</p>
-        <p>
-           O livro é incrível! A mistura de ciência real com mistério e simbolismo é perfeita. HAL 9000 é um dos personagens mais marcantes que já encontrei — um computador com mais humanidade do que muita gente. Uma história que faz pensar sobre tecnologia e consciência.
-        </p>
-      </div>
+                <p style="color: #7a0a19; margin-bottom: 10px;">Comentando como: <strong>{% firstof user.first_name user.username %}</strong></p>
 
-      <div class="comment">
-        <p><strong>Renata</strong> — 27/11/2025</p>
-        <p>
-            Li “2001” depois de ver o filme e fiquei impressionada com a profundidade do livro. Clarke explica melhor o que está por trás dos mistérios e do monólito. É uma leitura que faz refletir sobre o papel da humanidade no universo e os limites do conhecimento.
-        </p>
-      </div>
+                <label for="mensagem">Comentário</label><br />
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui" required></textarea><br />
 
-      <h3>Enviar um comentário (modelo estático)</h3>
-      <p>
-        (Formulário de exemplo — sem processamento)
-      </p>
-      <form action="#" method="post" class="comment-form">
-        <label for="nome">Nome</label><br />
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" /><br />
+                <button type="submit">Enviar comentário</button>
+              </form>
+          {% else %}
+              <div class="comment">
+                <p>Você precisa estar conectado para comentar. <a href="{% url 'pagina_conta' %}?aba=login" style="color: #b11628; font-weight: bold;">Fazer Login</a></p>
+              </div>
+          {% endif %}
+        </article>
+      </section>
+    </div>
 
-        <label for="email">Email</label><br />
-        <input type="text" id="email" name="email" placeholder="seu@email.com" /><br />
 
-        <label for="mensagem">Comentário</label><br />
-        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui"></textarea><br />
+    <div id="Eu, robô">
+      <section id="content">
+        <article class="post">
+          <h2>Discussão: Eu, robô</h2>
 
-        <button type="submit">Enviar comentário</button>
-      </form>
-    </article>
-  </section>
-</section>
-</div>
+          <div class="livro-box">
+              <img src="{% static 'img/eu,robo.capa.png' %}" alt="Eu, robô capa" class="livro-img">
+              <div class="livro-texto">
+                  <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
+                  <p>Bem-vindos à página de comentários e discussões do livro <em>Eu, robô</em>...</p>
+                  <h3>Resumo rápido (demo)</h3>
+                  <p><em>Eu, robô</em> O livro reúne nove contos interligados sobre a evolução da robítica...</p>
+              </div>
+          </div>
 
-<div id="Eu, robô">
-  <section id="content">
-    
-    <article class="post">
-      <h2>Discussão: Eu, robô</h2>
+          <h3>Comentários recentes</h3>
 
-      <div class="livro-box">
-        <img src="{% static 'img/eu,robo.capa.png' %}" alt="Eu, robô capa" class="livro-img">
-      
-        <div class="livro-texto">
-      <p class="meta">Publicado por <strong>Dreamy Pages</strong> — 05/11/2024</p>
+          {% for coment in comentarios_robo %}
+              <div class="comment">
+                <p><strong>{% firstof coment.usuario.first_name coment.usuario.username %}</strong> — {{ coment.data_criacao|date:"d/m/Y" }}</p>
+                <p>“{{ coment.texto }}”</p>
+              </div>
+          {% empty %}
+              <div class="comment">
+                <p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+              </div>
+          {% endfor %}
 
-      <p>
-        Bem-vindos à página de comentários e discussões do livro <em>Eu, robô</em>.
-        Aqui você pode ler opiniões de exemplo, comentar e compartilhar suas impressões.
-      </p>
+          <h3>Enviar um comentário</h3>
+          {% if user.is_authenticated %}
+              <form action="{% url 'pagina_comentarios_ficção' %}" method="post" class="comment-form">
+                {% csrf_token %}
+                <input type="hidden" name="livro_nome" value="eu-robo">
 
-      <h3>Resumo rápido (demo)</h3>
-      <p>
-        <em>Eu, robô</em> O livro reúne nove contos interligados sobre a evolução da robótica e da inteligência artificial no futuro. As histórias giram em torno das Três Leis da Robótica, criadas para garantir que os robôs sirvam e protejam os humanos.Por meio da cientista Susan Calvin e de várias situações complexas, Asimov explora temas como ética, consciência, livre-arbítrio e o limite entre homem e máquina.
-      </p>
-</div>
-</div>
-      <h3>Comentários recentes</h3>
+                <p style="color: #7a0a19; margin-bottom: 10px;">Comentando como: <strong>{% firstof user.first_name user.username %}</strong></p>
 
-      
-      <div class="comment">
-        <p><strong>Lucas</strong> — 28/08/2025</p>
-        <p>
-           “Eu, Robô” é um livro genial! Asimov cria histórias curtas que exploram a relação entre humanos e máquinas de um jeito inteligente e filosófico. As Três Leis da Robótica são uma ideia incrível, e cada conto faz pensar sobre ética, inteligência e humanidade.
-        </p>
-      </div>
+                <label for="mensagem">Comentário</label><br />
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui" required></textarea><br />
 
-      <div class="comment">
-        <p><strong>Fernanda</strong> — 03/01/2025</p>
-        <p>
-           O que mais gostei em “Eu, Robô” é como Asimov transforma a ficção científica em algo profundamente humano. Os robôs não são apenas máquinas, mas refletem nossos próprios dilemas morais e emocionais. Um clássico indispensável para quem ama tecnologia e filosofia.
-        </p>
-      </div>
+                <button type="submit">Enviar comentário</button>
+              </form>
+          {% else %}
+              <div class="comment">
+                <p>Você precisa estar conectado para comentar. <a href="{% url 'pagina_conta' %}?aba=login" style="color: #b11628; font-weight: bold;">Fazer Login</a></p>
+              </div>
+          {% endif %}
+        </article>
+      </section>
+    </div>
 
-      <div class="comment">
-        <p><strong>Rodrigo</strong> — 01/09/2025</p>
-        <p>
-          Li “Eu, Robô” achando que seria só sobre robôs e fiquei surpreso com a profundidade. Os contos são conectados e mostram como a inteligência artificial evolui com o tempo. É impressionante como Asimov previu questões que ainda discutimos hoje.
-        </p>
-      </div>
-
-      <h3>Enviar um comentário (modelo estático)</h3>
-      <p>
-        (Formulário de exemplo — sem processamento)
-      </p>
-      <form action="#" method="post" class="comment-form">
-        <label for="nome">Nome</label><br />
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" /><br />
-
-        <label for="email">Email</label><br />
-        <input type="text" id="email" name="email" placeholder="seu@email.com" /><br />
-
-        <label for="mensagem">Comentário</label><br />
-        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva seu comentário aqui"></textarea><br />
-
-        <button type="submit">Enviar comentário</button>
-      </form>
-    </article>
-  </section>
-</section>
-</div>
 </body>
 </html>
